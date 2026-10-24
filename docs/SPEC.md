@@ -2,7 +2,7 @@
 
 **One sentence:** A Strategy analyst can explain a numerical disagreement between two reports using reproducible evidence.
 
-**Decision owner:** Rahil. Implementation owner: Codex, local POC authorized by Rahil.
+**Decision owner:** Rahil. Implementation: local proof of concept, authorized by Rahil.
 **Revised:** 2026-10-24, revision 3.
 **Status:** IMPLEMENTED synthetic POC — build authorized with “Start” on 2026-10-24. Live Strategy integration is not tested.
 **Path:** `docs/SPEC.md` (project mirror; authoritative planning issue is #41).

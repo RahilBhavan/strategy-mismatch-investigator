@@ -1,4 +1,4 @@
-"""Dedicated local persistence; nothing connects to Orbit or enterprise services."""
+"""Dedicated local persistence; nothing connects to external or enterprise services."""
 import json
 import sqlite3
 import threading
