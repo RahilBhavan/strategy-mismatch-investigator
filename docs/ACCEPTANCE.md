@@ -2,7 +2,7 @@
 
 Revision 3, 2026-10-24. Part of the [POC specification](SPEC.md). These replace revision 2's mandatory live-integration criteria; they do not turn unperformed live checks into passes.
 
-All 19 synthetic POC criteria have an evidence mapping in the implementation receipt: `/home/rahil/projects/strategy-mismatch-investigator/verification/ACCEPTANCE-RECEIPT.md`. Public computation/HTTP and Firefox behavior were exercised using synthetic records. Live Strategy behavior remains untested; platform limits and independent-review qualifications are retained in that receipt.
+All 19 synthetic POC criteria have an evidence mapping in the implementation receipt: `verification/ACCEPTANCE-RECEIPT.md`. Public computation/HTTP and Firefox behavior were exercised using synthetic records. Live Strategy behavior remains untested; platform limits and independent-review qualifications are retained in that receipt.
 
 - **AC-1 — Source labeling:** every comparison/evidence view and exported packet identifies “Proof of concept — simulated Strategy connection.” Live connection status is “not tested.” No fabricated deployment, authentication success or native installation is shown.
 - **AC-2 — Boundary:** unsupported report types, different projects, malformed inputs and cases exceeding 100,000 records or 20 MB are rejected before diagnosis. Errors identify invalid fields and retain entered selections.

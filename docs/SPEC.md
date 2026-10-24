@@ -153,4 +153,4 @@ Future scope changes require IN/NEXT/TRADE treatment with criterion and effort i
 
 ## 13. Sign-off
 
-Direction confirmed: proof of concept for a Strategy product integration. Rahil authorized the revised POC build with “Start” on 2026-10-24. The runnable implementation is `/home/rahil/projects/strategy-mismatch-investigator`; its verification/ACCEPTANCE-RECEIPT.md maps all 19 criteria to observed synthetic checks. Live Strategy connection, customer usefulness and production readiness remain untested. No customer data is used.
+Direction confirmed: proof of concept for a Strategy product integration. Rahil authorized the revised POC build with “Start” on 2026-10-24. The runnable implementation is this repository; its verification/ACCEPTANCE-RECEIPT.md maps all 19 criteria to observed synthetic checks. Live Strategy connection, customer usefulness and production readiness remain untested. No customer data is used.

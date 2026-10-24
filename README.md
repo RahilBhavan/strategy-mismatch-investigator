@@ -1,13 +1,14 @@
 # Strategy number mismatch investigator
 
-A working proof of concept for explaining a prompt/filter difference between two report totals. **Synthetic records and a simulated Strategy adapter only. Live Strategy integration is not tested.** This is an independent demonstration, not an official product or installed extension.
+A working proof of concept for explaining a prompt/filter difference between two report totals. **Synthetic records and a simulated Strategy adapter only. Live Strategy integration is not tested.** This is an independent demonstration by Rahil Bhavan. It is not affiliated with, endorsed by or an official product of Strategy (formerly MicroStrategy), and it is not an installed extension. The interface borrows Strategy's published typeface and orange accent for context only; no Strategy logo or data is used.
 
 ## Run
 
 Python 3.11+; the application has no third-party dependencies.
 
 ```bash
-cd /home/rahil/projects/strategy-mismatch-investigator
+git clone https://github.com/RahilBhavan/strategy-mismatch-investigator
+cd strategy-mismatch-investigator
 python -m app.server --port 8807
 ```
 
@@ -44,3 +45,7 @@ The app tests exercise its public computation/HTTP interfaces, cancellation, sta
 Verification and limits: [acceptance receipt](verification/ACCEPTANCE-RECEIPT.md), [final independent critique](verification/REVIEW-R3.md). Firefox/Linux and responsive emulations were exercised; Chromium, WebKit, real devices and screen readers remain unverified. Functional synthetic checks do not establish live integration or portfolio-level design approval.
 
 The source spec and issue are [RahilBhavan/main#41](https://github.com/RahilBhavan/main/issues/41). No account signup, production access, direct warehouse queries, publishing, automatic report edits or scheduled jobs are included.
+
+## License
+
+[MIT](LICENSE). The license covers this project's code. Inter is bundled under its own license (`web/assets/Inter-LICENSE.txt`).

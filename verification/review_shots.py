@@ -1,7 +1,7 @@
 from playwright.sync_api import sync_playwright
 from pathlib import Path
 import json
-root=Path('/home/rahil/projects/strategy-mismatch-investigator')
+root=Path(__file__).resolve().parents[1]
 with sync_playwright() as p:
  b=p.firefox.launch(executable_path='/home/rahil/.cache/ms-playwright/firefox-1555/firefox/firefox',headless=True)
  page=b.new_page(viewport={'width':1440,'height':1000},reduced_motion='reduce')
