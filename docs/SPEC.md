@@ -6,7 +6,7 @@
 **Revised:** 2026-10-24, revision 3.
 **Status:** IMPLEMENTED synthetic POC — build authorized with “Start” on 2026-10-24. Live Strategy integration is not tested.
 **Path:** `docs/SPEC.md` (project mirror; authoritative planning issue is #41).
-**Tracker:** [Spec #41](https://github.com/RahilBhavan/main/issues/41).
+**Tracker:** spec #41 in a private repository, so the link is not public. This file is the public copy.
 
 ## 1. Confirmed scope
 
@@ -26,7 +26,7 @@ The POC must demonstrate: select two reports → reproduce their totals → iden
 
 ## 3. Evidence and existing overlap
 
-The originating [planning issue](https://github.com/RahilBhavan/main/issues/41) and its research records contain the original findings. [Test Center](https://www2.strategy.com/producthelp/current/workstation/en-us/Content/test_center.htm) already compares reports and baselines. The POC investigates cause-specific explanation, not a claim that comparison itself is absent or that the feature is unique.
+The originating planning issue (private repository, not linked) and its research records contain the original findings. [Test Center](https://www2.strategy.com/producthelp/current/workstation/en-us/Content/test_center.htm) already compares reports and baselines. The POC investigates cause-specific explanation, not a claim that comparison itself is absent or that the feature is unique.
 
 Primary API references checked October 24, 2026:
 
