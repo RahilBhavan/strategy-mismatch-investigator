@@ -1,0 +1,213 @@
+{
+  "kind": "live-public-demo-check",
+  "checked_at": "2026-10-24T21:45:14+00:00",
+  "server": "https://demo.microstrategy.com/MicroStrategyLibrary/api",
+  "project": "B7CA92F04B9FAE8D941C3E9B7E0CD754",
+  "login": "guest (loginMode 8), read-only",
+  "originals": [
+    {
+      "report_id": "8A6A18DE4E9D410A7A6314BAFA372ADA",
+      "name": "Region Category",
+      "instance_id": "2A86246A57480D10EA28E5869DAC7365",
+      "view_filter": null,
+      "total": "35023708.15",
+      "unrounded": "35023708.15",
+      "cells": 32,
+      "complete": true,
+      "regions": {
+        "h4;8D679D4B11D3E4981000E787EC6DE8A4": "Central",
+        "h2;8D679D4B11D3E4981000E787EC6DE8A4": "Mid-Atlantic",
+        "h1;8D679D4B11D3E4981000E787EC6DE8A4": "Northeast",
+        "h6;8D679D4B11D3E4981000E787EC6DE8A4": "Northwest",
+        "h5;8D679D4B11D3E4981000E787EC6DE8A4": "South",
+        "h3;8D679D4B11D3E4981000E787EC6DE8A4": "Southeast",
+        "h7;8D679D4B11D3E4981000E787EC6DE8A4": "Southwest",
+        "h12;8D679D4B11D3E4981000E787EC6DE8A4": "Web"
+      },
+      "paging": {
+        "total": 32,
+        "current": 32,
+        "offset": 0,
+        "limit": 5000
+      }
+    },
+    {
+      "report_id": "2C3DFFB411D6044FC0008C916B98494F",
+      "name": "Electronics Revenue by Region",
+      "instance_id": "A72FD2620D4A1C1902824E9275A33A69",
+      "view_filter": null,
+      "total": "21666380.90",
+      "unrounded": "21666380.90",
+      "cells": 21,
+      "complete": true,
+      "regions": {
+        "h4;8D679D4B11D3E4981000E787EC6DE8A4": "Central",
+        "h2;8D679D4B11D3E4981000E787EC6DE8A4": "Mid-Atlantic",
+        "h1;8D679D4B11D3E4981000E787EC6DE8A4": "Northeast",
+        "h6;8D679D4B11D3E4981000E787EC6DE8A4": "Northwest",
+        "h5;8D679D4B11D3E4981000E787EC6DE8A4": "South",
+        "h3;8D679D4B11D3E4981000E787EC6DE8A4": "Southeast",
+        "h7;8D679D4B11D3E4981000E787EC6DE8A4": "Southwest"
+      },
+      "paging": {
+        "total": 7,
+        "current": 7,
+        "offset": 0,
+        "limit": 5000
+      }
+    }
+  ],
+  "context": {
+    "A": {
+      "readable": true,
+      "text": "No report filter"
+    },
+    "B": {
+      "readable": false,
+      "status": 500,
+      "error": "Model Server internal error: User 'Public / Guest' does not have Read access to the Object with id '8107C322DD9911D3B98100C04F2233EA' and type 'function'."
+    }
+  },
+  "delta": "-13357327.25",
+  "steps": [
+    {
+      "field": "category",
+      "change": "Category = Electronics (hypothesis from B's report name)",
+      "result": {
+        "report_id": "8A6A18DE4E9D410A7A6314BAFA372ADA",
+        "name": "Region Category",
+        "instance_id": "E263D19F8C4B4728B1ACDD92A2C2F526",
+        "view_filter": {
+          "operator": "In",
+          "operands": [
+            {
+              "type": "attribute",
+              "id": "8D679D3711D3E4981000E787EC6DE8A4"
+            },
+            {
+              "type": "elements",
+              "elements": [
+                {
+                  "id": "h2;8D679D3711D3E4981000E787EC6DE8A4"
+                }
+              ]
+            }
+          ]
+        },
+        "total": "24391302.85",
+        "unrounded": "24391302.85",
+        "cells": 8,
+        "complete": true,
+        "regions": {
+          "h4;8D679D4B11D3E4981000E787EC6DE8A4": "Central",
+          "h2;8D679D4B11D3E4981000E787EC6DE8A4": "Mid-Atlantic",
+          "h1;8D679D4B11D3E4981000E787EC6DE8A4": "Northeast",
+          "h6;8D679D4B11D3E4981000E787EC6DE8A4": "Northwest",
+          "h5;8D679D4B11D3E4981000E787EC6DE8A4": "South",
+          "h3;8D679D4B11D3E4981000E787EC6DE8A4": "Southeast",
+          "h7;8D679D4B11D3E4981000E787EC6DE8A4": "Southwest",
+          "h12;8D679D4B11D3E4981000E787EC6DE8A4": "Web"
+        },
+        "paging": {
+          "total": 8,
+          "current": 8,
+          "offset": 0,
+          "limit": 5000
+        }
+      },
+      "impact": "-10632405.30",
+      "residual": "2724921.95"
+    },
+    {
+      "field": "region",
+      "change": "Region excludes Web (observed: absent from B's returned rows)",
+      "result": {
+        "report_id": "8A6A18DE4E9D410A7A6314BAFA372ADA",
+        "name": "Region Category",
+        "instance_id": "ED2125E58841B6EA2F96D6A69BD31D99",
+        "view_filter": {
+          "operator": "And",
+          "operands": [
+            {
+              "operator": "In",
+              "operands": [
+                {
+                  "type": "attribute",
+                  "id": "8D679D3711D3E4981000E787EC6DE8A4"
+                },
+                {
+                  "type": "elements",
+                  "elements": [
+                    {
+                      "id": "h2;8D679D3711D3E4981000E787EC6DE8A4"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "operator": "NotIn",
+              "operands": [
+                {
+                  "type": "attribute",
+                  "id": "8D679D4B11D3E4981000E787EC6DE8A4"
+                },
+                {
+                  "type": "elements",
+                  "elements": [
+                    {
+                      "id": "h12;8D679D4B11D3E4981000E787EC6DE8A4"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "total": "21666380.90",
+        "unrounded": "21666380.90",
+        "cells": 7,
+        "complete": true,
+        "regions": {
+          "h4;8D679D4B11D3E4981000E787EC6DE8A4": "Central",
+          "h2;8D679D4B11D3E4981000E787EC6DE8A4": "Mid-Atlantic",
+          "h1;8D679D4B11D3E4981000E787EC6DE8A4": "Northeast",
+          "h6;8D679D4B11D3E4981000E787EC6DE8A4": "Northwest",
+          "h5;8D679D4B11D3E4981000E787EC6DE8A4": "South",
+          "h3;8D679D4B11D3E4981000E787EC6DE8A4": "Southeast",
+          "h7;8D679D4B11D3E4981000E787EC6DE8A4": "Southwest"
+        },
+        "paging": {
+          "total": 7,
+          "current": 7,
+          "offset": 0,
+          "limit": 5000
+        }
+      },
+      "impact": "-2724921.95",
+      "residual": "0.00"
+    }
+  ],
+  "status": "demonstrated",
+  "unknowns": [
+    "This shows which selections reproduce B numerically. It does not decide which definition is correct.",
+    "B's filter definition is not readable by the guest user, so the explanation is numerical, not a reading of B's definition."
+  ],
+  "cleanup": {
+    "instances_created": 4,
+    "logout_status": 204,
+    "calls": 8,
+    "requests": [
+      "POST /auth/login",
+      "POST /v2/reports/8A6A18DE4E9D410A7A6314BAFA372ADA/instances",
+      "POST /v2/reports/2C3DFFB411D6044FC0008C916B98494F/instances",
+      "GET /model/reports/8A6A18DE4E9D410A7A6314BAFA372ADA",
+      "GET /model/reports/2C3DFFB411D6044FC0008C916B98494F",
+      "POST /v2/reports/8A6A18DE4E9D410A7A6314BAFA372ADA/instances",
+      "POST /v2/reports/8A6A18DE4E9D410A7A6314BAFA372ADA/instances",
+      "POST /auth/logout"
+    ],
+    "instance_deletion": "not attempted; instances end with the session",
+    "writes_to_saved_objects": []
+  }
+}

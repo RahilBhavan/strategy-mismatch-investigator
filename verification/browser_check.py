@@ -10,6 +10,8 @@ from app.server import handler
 from app.store import Store
 from app.fixtures import example
 from playwright.sync_api import sync_playwright
+sys.path.insert(0,str(Path(__file__).resolve().parent))
+from engine import CAPTURE_STYLE, ENGINE, launch, named
 
 ROOT=Path(__file__).resolve().parents[1]
 OUT=ROOT/'verification'
@@ -26,27 +28,27 @@ def stop(http,thread):
     http.shutdown();http.server_close();thread.join()
 
 
-with tempfile.TemporaryDirectory(dir='/home/rahil/scratch/strategy-mismatch-build') as tmp:
+with tempfile.TemporaryDirectory() as tmp:
     db=Path(tmp)/'browser.sqlite3'
     store=Store(db);http,thread=server(store);port=http.server_port
     url=f'http://127.0.0.1:{port}'
     with sync_playwright() as p:
-        browser=p.firefox.launch(executable_path='/home/rahil/.cache/ms-playwright/firefox-1555/firefox/firefox',headless=True)
+        browser=launch(p)
         page=browser.new_page(viewport={'width':1440,'height':1100},reduced_motion='reduce',accept_downloads=True)
         errors=[];page.on('pageerror',lambda error:errors.append(str(error)))
         page.goto(url,wait_until='networkidle')
         page.get_by_role('button',name='Compare totals').click()
         page.get_by_role('button',name='Test the status selection').wait_for()
         assert page.locator('.report-table .amount').all_text_contents()==['220','180']
-        page.screenshot(path=str(OUT/'r2-candidate-1440.png'),full_page=True)
+        page.screenshot(path=str(OUT/named('r4-candidate-1440.png')),full_page=True,style=CAPTURE_STYLE)
         page.get_by_role('button',name='Test the status selection').click()
         page.get_by_role('heading',name='The status selection explains the gap.').wait_for()
-        assert page.locator('.experiment-values dd').all_text_contents()==['220','40','0']
-        page.screenshot(path=str(OUT/'r2-demonstrated-1440.png'),full_page=True)
+        assert page.locator('.ledger .num').all_text_contents()==['180','+40','220','220','0']
+        page.screenshot(path=str(OUT/named('r4-demonstrated-1440.png')),full_page=True,style=CAPTURE_STYLE)
         with page.expect_download() as info:page.get_by_role('button',name='Export evidence JSON').click()
-        packet_path=OUT/'browser-export.json';info.value.save_as(packet_path)
+        packet_path=OUT/named('browser-export.json');info.value.save_as(packet_path)
         with page.expect_download() as info:page.get_by_role('button',name='Save readable report').click()
-        report_path=OUT/'browser-report.html';info.value.save_as(report_path)
+        report_path=OUT/named('browser-report.html');info.value.save_as(report_path)
         remembered=page.url
         stop(http,thread);store=Store(db);http,thread=server(store,port)
         page.goto(remembered,wait_until='networkidle')
@@ -64,14 +66,15 @@ with tempfile.TemporaryDirectory(dir='/home/rahil/scratch/strategy-mismatch-buil
         page.get_by_role('button',name='Test the status selection').click()
         page.get_by_role('heading',name='The status selection explains the gap.').wait_for()
         assert page.locator('.report-table .amount').all_text_contents()==['195','180']
-        assert page.locator('.experiment-values dd').all_text_contents()==['195','15','0']
+        assert page.locator('.ledger .num').all_text_contents()==['180','+15','195','195','0']
+        assert page.locator('.record-table tr.added').count()==1
         receipts.append({'check':'changed source values recompute; stale result removed','result':'pass'})
         for name,title in [('equal','The captured totals agree.'),('snapshots','The evidence does not isolate a cause.'),('ambiguous','The evidence does not isolate a cause.'),('missing','The evidence does not isolate a cause.')]:
             page.locator('#scenario').select_option(name)
             page.get_by_role('button',name='Compare totals').click()
             page.get_by_role('heading',name=title).wait_for()
             assert page.locator('#diagnose').count()==0
-            page.screenshot(path=str(OUT/f'r2-{name}-1440.png'),full_page=True)
+            page.screenshot(path=str(OUT/named(f'r4-{name}-1440.png')),full_page=True,style=CAPTURE_STYLE)
         receipts.append({'check':'equal, snapshot, ambiguous and missing-context states','result':'pass'})
         page.locator('#scenario').select_option('status')
         page.locator('.tools').evaluate('(e)=>e.open=true')
@@ -110,14 +113,14 @@ with tempfile.TemporaryDirectory(dir='/home/rahil/scratch/strategy-mismatch-buil
             metrics=page.evaluate('({width:innerWidth,scroll:document.documentElement.scrollWidth,font:document.fonts.check("15px Inter")})')
             assert metrics['scroll']<=width,metrics
             assert metrics['font']
-            page.screenshot(path=str(OUT/f'r2-demonstrated-{width}.png'),full_page=True)
+            page.screenshot(path=str(OUT/named(f'r4-demonstrated-{width}.png')),full_page=True,style=CAPTURE_STYLE)
             page.locator('.tools').evaluate('(e)=>e.open=false')
             receipts.append({'check':'responsive demonstrated state','result':'pass',**metrics})
         page.set_viewport_size({'width':390,'height':1100})
         page.locator('#scenario').select_option('snapshots')
         page.get_by_role('button',name='Compare totals').click()
         page.get_by_role('heading',name='The evidence does not isolate a cause.').wait_for()
-        page.screenshot(path=str(OUT/'r2-unresolved-390.png'),full_page=True)
+        page.screenshot(path=str(OUT/named('r4-unresolved-390.png')),full_page=True,style=CAPTURE_STYLE)
         # Keyboard focus is observable; traverse from the skip link into the real controls.
         page.goto(url,wait_until='networkidle')
         focus=[]
@@ -127,7 +130,7 @@ with tempfile.TemporaryDirectory(dir='/home/rahil/scratch/strategy-mismatch-buil
         assert any(item['id']=='compare' and item['outline']=='solid' for item in focus),focus
         receipts.append({'check':'keyboard traversal and visible focus','result':'pass','focus':focus})
         assert not errors,errors
-        (OUT/'browser-checks.json').write_text(json.dumps({'browser':'Firefox 1555, Linux headless','checks':receipts,'page_errors':errors},indent=2)+'\n')
+        (OUT/named('browser-checks.json')).write_text(json.dumps({'browser':f'{ENGINE} {browser.version}, Linux headless','checks':receipts,'page_errors':errors},indent=2)+'\n')
         browser.close()
     stop(http,thread)
 print(json.dumps(receipts,indent=2))

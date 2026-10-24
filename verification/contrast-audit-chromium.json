@@ -1,0 +1,56 @@
+{
+  "browser": "chromium 156.0.8078.4",
+  "states": {
+    "empty @ 1280px": {
+      "elements": 34,
+      "minimum": 3.72
+    },
+    "candidate @ 1280px": {
+      "elements": 64,
+      "minimum": 4.54
+    },
+    "demonstrated, all evidence and controls open @ 1280px": {
+      "elements": 185,
+      "minimum": 4.54
+    },
+    "unresolved @ 1280px": {
+      "elements": 67,
+      "minimum": 4.54
+    },
+    "error @ 1280px": {
+      "elements": 44,
+      "minimum": 3.72
+    },
+    "integration boundary page @ 1280px": {
+      "elements": 55,
+      "minimum": 4.54
+    },
+    "empty @ 390px": {
+      "elements": 28,
+      "minimum": 3.72
+    },
+    "candidate @ 390px": {
+      "elements": 58,
+      "minimum": 5.95
+    },
+    "demonstrated, all evidence and controls open @ 390px": {
+      "elements": 179,
+      "minimum": 5.95
+    },
+    "unresolved @ 390px": {
+      "elements": 61,
+      "minimum": 5.95
+    },
+    "error @ 390px": {
+      "elements": 38,
+      "minimum": 3.72
+    },
+    "integration boundary page @ 390px": {
+      "elements": 53,
+      "minimum": 6.77
+    }
+  },
+  "failures": [],
+  "excluded": "disabled controls (WCAG exempts inactive components)",
+  "limits": "Text nodes and control values only, at 1280 and 390 CSS px; translucency is blended. Hover/focus colours, non-text contrast and physical displays are not measured."
+}

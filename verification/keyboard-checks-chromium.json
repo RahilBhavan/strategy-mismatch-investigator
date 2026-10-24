@@ -1,0 +1,297 @@
+{
+  "browser": "chromium 156.0.8078.4, Linux",
+  "post_result_focus": {
+    "id": "finding-title",
+    "top": 96.203125,
+    "bottom": 141.796875,
+    "banner": 74.78125,
+    "height": 1000
+  },
+  "viewport": 390,
+  "result": "pass",
+  "pointer_actions": 0,
+  "external_requests": [],
+  "paths": [
+    "compare \u2192 diagnostic \u2192 open context/execution \u2192 JSON and readable export",
+    "expanded amount edit \u2192 slow run \u2192 cancel",
+    "denied evidence \u2192 retry without partial result"
+  ],
+  "focus_trace": [
+    {
+      "tag": "A",
+      "id": "",
+      "text": "Skip to investigation",
+      "outline": "solid"
+    },
+    {
+      "tag": "A",
+      "id": "",
+      "text": "Strategy / Investigation lab",
+      "outline": "solid"
+    },
+    {
+      "tag": "A",
+      "id": "",
+      "text": "Integration boundary \u2197",
+      "outline": "solid"
+    },
+    {
+      "tag": "SELECT",
+      "id": "scenario",
+      "text": "Status selectionEqual resultsDifferent snapshotsTwo selections differMissing met",
+      "outline": "solid"
+    },
+    {
+      "tag": "SELECT",
+      "id": "report-0",
+      "text": "Sales overviewFinance review",
+      "outline": "solid"
+    },
+    {
+      "tag": "SELECT",
+      "id": "report-1",
+      "text": "Sales overviewFinance review",
+      "outline": "solid"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "compare",
+      "text": "Compare totals \u2192",
+      "outline": "solid"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "diagnose",
+      "text": "Test the status selection \u2192",
+      "outline": "solid"
+    },
+    {
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Inspect report context",
+      "outline": "solid"
+    },
+    {
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Inspect execution evidence",
+      "outline": "solid"
+    },
+    {
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Inspect synthetic source records",
+      "outline": "solid"
+    },
+    {
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Provenance, retries & cleanup",
+      "outline": "solid"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "export-json",
+      "text": "Export evidence JSON",
+      "outline": "solid"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "export-report",
+      "text": "Save readable report",
+      "outline": "solid"
+    },
+    {
+      "tag": "A",
+      "id": "",
+      "text": "Skip to investigation",
+      "outline": "solid"
+    },
+    {
+      "tag": "A",
+      "id": "",
+      "text": "Strategy / Investigation lab",
+      "outline": "solid"
+    },
+    {
+      "tag": "A",
+      "id": "",
+      "text": "Integration boundary \u2197",
+      "outline": "solid"
+    },
+    {
+      "tag": "SELECT",
+      "id": "scenario",
+      "text": "Status selectionEqual resultsDifferent snapshotsTwo selections differMissing met",
+      "outline": "solid"
+    },
+    {
+      "tag": "SELECT",
+      "id": "report-0",
+      "text": "Sales overviewFinance review",
+      "outline": "solid"
+    },
+    {
+      "tag": "SELECT",
+      "id": "report-1",
+      "text": "Sales overviewFinance review",
+      "outline": "solid"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "compare",
+      "text": "Compare totals \u2192",
+      "outline": "solid"
+    },
+    {
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Source & test controls",
+      "outline": "solid"
+    },
+    {
+      "tag": "INPUT",
+      "id": "amount",
+      "text": "",
+      "outline": "solid"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "save-amount",
+      "text": "Update synthetic source",
+      "outline": "solid"
+    },
+    {
+      "tag": "SELECT",
+      "id": "condition",
+      "text": "Normal executionEvidence unavailableSession expiredTransient failure, then retry",
+      "outline": "solid"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "save-amount",
+      "text": "Update synthetic source",
+      "outline": "solid"
+    },
+    {
+      "tag": "INPUT",
+      "id": "amount",
+      "text": "",
+      "outline": "solid"
+    },
+    {
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Source & test controls",
+      "outline": "solid"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "compare",
+      "text": "Compare totals \u2192",
+      "outline": "solid"
+    },
+    {
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Source & test controls",
+      "outline": "solid"
+    },
+    {
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Continue a review",
+      "outline": "solid"
+    },
+    {
+      "tag": "BODY",
+      "id": "",
+      "text": "Skip to investigation\nProof of concept \u2014 simulated Strategy connection This app:",
+      "outline": "none"
+    },
+    {
+      "tag": "A",
+      "id": "",
+      "text": "Skip to investigation",
+      "outline": "solid"
+    },
+    {
+      "tag": "A",
+      "id": "",
+      "text": "Strategy / Investigation lab",
+      "outline": "solid"
+    },
+    {
+      "tag": "A",
+      "id": "",
+      "text": "Integration boundary \u2197",
+      "outline": "solid"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "cancel",
+      "text": "Cancel investigation",
+      "outline": "solid"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "retry",
+      "text": "Retry investigation",
+      "outline": "solid"
+    },
+    {
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Source & test controls",
+      "outline": "solid"
+    },
+    {
+      "tag": "INPUT",
+      "id": "amount",
+      "text": "",
+      "outline": "solid"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "save-amount",
+      "text": "Update synthetic source",
+      "outline": "solid"
+    },
+    {
+      "tag": "SELECT",
+      "id": "condition",
+      "text": "Normal executionEvidence unavailableSession expiredTransient failure, then retry",
+      "outline": "solid"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "save-amount",
+      "text": "Update synthetic source",
+      "outline": "solid"
+    },
+    {
+      "tag": "INPUT",
+      "id": "amount",
+      "text": "",
+      "outline": "solid"
+    },
+    {
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Source & test controls",
+      "outline": "solid"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "compare",
+      "text": "Compare totals \u2192",
+      "outline": "solid"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "retry",
+      "text": "Retry investigation",
+      "outline": "solid"
+    }
+  ]
+}

@@ -1,5 +1,12 @@
 {
-  "browser": "Firefox 1555, Linux",
+  "browser": "firefox 157.0, Linux",
+  "post_result_focus": {
+    "id": "finding-title",
+    "top": 96,
+    "bottom": 141.60000610351562,
+    "banner": 57.19999694824219,
+    "height": 1000
+  },
   "viewport": 390,
   "result": "pass",
   "pointer_actions": 0,
@@ -191,6 +198,12 @@
       "outline": "solid"
     },
     {
+      "tag": "BUTTON",
+      "id": "retry",
+      "text": "Retry investigation",
+      "outline": "solid"
+    },
+    {
       "tag": "SUMMARY",
       "id": "",
       "text": "Source & test controls",
@@ -236,42 +249,6 @@
       "tag": "BUTTON",
       "id": "compare",
       "text": "Compare totals \u2192",
-      "outline": "solid"
-    },
-    {
-      "tag": "SUMMARY",
-      "id": "",
-      "text": "Source & test controls",
-      "outline": "solid"
-    },
-    {
-      "tag": "INPUT",
-      "id": "amount",
-      "text": "",
-      "outline": "solid"
-    },
-    {
-      "tag": "BUTTON",
-      "id": "save-amount",
-      "text": "Update synthetic source",
-      "outline": "solid"
-    },
-    {
-      "tag": "SELECT",
-      "id": "condition",
-      "text": "Normal executionEvidence unavailableSession expiredTransient failure, then retry",
-      "outline": "solid"
-    },
-    {
-      "tag": "INPUT",
-      "id": "case-file",
-      "text": "",
-      "outline": "solid"
-    },
-    {
-      "tag": "SUMMARY",
-      "id": "",
-      "text": "Continue a review",
       "outline": "solid"
     },
     {

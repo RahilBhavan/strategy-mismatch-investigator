@@ -28,4 +28,4 @@ All 19 synthetic POC criteria have an evidence mapping in the implementation rec
 
 If an authorized Strategy environment becomes available, record actual build/project, acting-user authentication/privileges, metadata/result routes, complete totals, shared data context and approved evidence handling. Exercise one report pair and controlled prompt experiment, plus denial/session failure and instance cleanup. Confirm an approved UI host before claiming native placement.
 
-Record each live check as verified, failed or not tested with source evidence. Passing simulated checks cannot substitute for any live result. No current live receipt or connected-environment claim exists.
+Record each live check as verified, failed or not tested with source evidence. Passing simulated checks cannot substitute for any live result. One read-only receipt exists for Strategy's public demo server (`verification/live-demo-check.json`): guest authentication, report instances, transient view filters, totals, a read-access refusal and logout. No customer-deployment or connected-app claim exists.

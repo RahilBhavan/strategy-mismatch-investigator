@@ -1,0 +1,228 @@
+{
+  "payload": {
+    "case": {
+      "name": "Status selection",
+      "records": [
+        {
+          "amount": "100.00",
+          "id": "order-1",
+          "region": "East",
+          "status": "paid"
+        },
+        {
+          "amount": "40.00",
+          "id": "order-2",
+          "region": "East",
+          "status": "refunded"
+        },
+        {
+          "amount": "60.00",
+          "id": "order-3",
+          "region": "West",
+          "status": "paid"
+        },
+        {
+          "amount": "20.00",
+          "id": "order-4",
+          "region": "West",
+          "status": "paid"
+        }
+      ],
+      "reports": [
+        {
+          "complete": true,
+          "definition": "SUM(amount)",
+          "filters": {
+            "region": null,
+            "status": null
+          },
+          "grain": "order",
+          "id": "sales-overview",
+          "metric": "order-amount",
+          "name": "Sales overview",
+          "project": "synthetic-retail",
+          "scale": 2,
+          "snapshot": "synthetic-orders-v1",
+          "type": "grid",
+          "unit": "illustrative units"
+        },
+        {
+          "complete": true,
+          "definition": "SUM(amount)",
+          "filters": {
+            "region": null,
+            "status": [
+              "paid"
+            ]
+          },
+          "grain": "order",
+          "id": "finance-review",
+          "metric": "order-amount",
+          "name": "Finance review",
+          "project": "synthetic-retail",
+          "scale": 2,
+          "snapshot": "synthetic-orders-v1",
+          "type": "grid",
+          "unit": "illustrative units"
+        }
+      ],
+      "schema_version": "synthetic-case-v1",
+      "synthetic": true
+    },
+    "cleanup": {
+      "created": 3,
+      "events": [
+        {
+          "event": "execute",
+          "filters": {
+            "region": null,
+            "status": null
+          },
+          "instance_id": "sim-e959a9d64983",
+          "report_id": "sales-overview"
+        },
+        {
+          "event": "execute",
+          "filters": {
+            "region": null,
+            "status": [
+              "paid"
+            ]
+          },
+          "instance_id": "sim-460b77842996",
+          "report_id": "finance-review"
+        },
+        {
+          "event": "execute",
+          "filters": {
+            "region": null,
+            "status": null
+          },
+          "instance_id": "sim-fe92ad98c5f4",
+          "report_id": "finance-review"
+        }
+      ],
+      "instances": [
+        {
+          "diagnostic": false,
+          "id": "sim-e959a9d64983",
+          "report_id": "sales-overview",
+          "state": "released"
+        },
+        {
+          "diagnostic": false,
+          "id": "sim-460b77842996",
+          "report_id": "finance-review",
+          "state": "released"
+        },
+        {
+          "diagnostic": true,
+          "id": "sim-fe92ad98c5f4",
+          "report_id": "finance-review",
+          "state": "released"
+        }
+      ],
+      "live_strategy": "not tested",
+      "released": 3
+    },
+    "label": "Proof of concept — simulated Strategy connection",
+    "live_connection": "not tested",
+    "mode": "normal",
+    "packet_version": "synthetic-evidence-v1",
+    "result": {
+      "case_fingerprint": "9193a876ea584ff2d5cf918e2a6b7f9305ad972f4eee6cf1796d197e4b9d324b",
+      "delta": "-40.00",
+      "differences": [
+        {
+          "a": null,
+          "b": [
+            "paid"
+          ],
+          "field": "status",
+          "status": "numerical cause demonstrated on synthetic data"
+        }
+      ],
+      "experiment": {
+        "after": null,
+        "before": [
+          "paid"
+        ],
+        "changed_field": "status",
+        "impact": "40.00",
+        "result": {
+          "complete": true,
+          "definition_hash": "741b4841d513f7ea2002b642ab4bdb5a5b43a38eafc49b52b0e513d5d0be4c1e",
+          "filters": {
+            "region": null,
+            "status": null
+          },
+          "instance_id": "sim-fe92ad98c5f4",
+          "minor": "22000",
+          "name": "Finance review",
+          "non_null_rows": 4,
+          "report_id": "finance-review",
+          "selected_rows": 4,
+          "snapshot": "synthetic-orders-v1",
+          "total": "220.00"
+        },
+        "unchanged_fields": [
+          "region",
+          "metric",
+          "snapshot",
+          "grain",
+          "unit"
+        ]
+      },
+      "label": "Proof of concept — simulated Strategy connection",
+      "live_connection": "not tested",
+      "originals": [
+        {
+          "complete": true,
+          "definition_hash": "104c4ffa6c50bf9a4cb4c395778b09494590970f6ec0eefc3ea3845b3e34f790",
+          "filters": {
+            "region": null,
+            "status": null
+          },
+          "instance_id": "sim-e959a9d64983",
+          "minor": "22000",
+          "name": "Sales overview",
+          "non_null_rows": 4,
+          "report_id": "sales-overview",
+          "selected_rows": 4,
+          "snapshot": "synthetic-orders-v1",
+          "total": "220.00"
+        },
+        {
+          "complete": true,
+          "definition_hash": "741b4841d513f7ea2002b642ab4bdb5a5b43a38eafc49b52b0e513d5d0be4c1e",
+          "filters": {
+            "region": null,
+            "status": [
+              "paid"
+            ]
+          },
+          "instance_id": "sim-460b77842996",
+          "minor": "18000",
+          "name": "Finance review",
+          "non_null_rows": 3,
+          "report_id": "finance-review",
+          "selected_rows": 3,
+          "snapshot": "synthetic-orders-v1",
+          "total": "180.00"
+        }
+      ],
+      "percent_delta": "-18.18",
+      "phase": "diagnose",
+      "residual": "0.00",
+      "software_version": "0.4.0",
+      "status": "demonstrated",
+      "summary": "Rerunning B with A’s status selection changes 180.00 to 220.00. The remaining difference from A is 0.00.",
+      "unknowns": [
+        "This does not decide which status selection matches the intended business definition."
+      ]
+    },
+    "software_version": "0.4.0",
+    "source_stale": false
+  },
+  "sha256": "5cebcf664f0c8f6f436ac4716bd1414dd16226135ecfbe612bdf87726ad4dc91"
+}

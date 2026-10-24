@@ -10,7 +10,7 @@
           "status": "paid"
         },
         {
-          "amount": "25.00",
+          "amount": "40.00",
           "id": "order-2",
           "region": "East",
           "status": "refunded"
@@ -78,7 +78,7 @@
             "region": null,
             "status": null
           },
-          "instance_id": "sim-2228f36d06bf",
+          "instance_id": "sim-cd1d1124bc8e",
           "report_id": "sales-overview"
         },
         {
@@ -89,7 +89,7 @@
               "paid"
             ]
           },
-          "instance_id": "sim-b4e3a595a203",
+          "instance_id": "sim-b4a3727ef272",
           "report_id": "finance-review"
         },
         {
@@ -98,26 +98,26 @@
             "region": null,
             "status": null
           },
-          "instance_id": "sim-a4b91052e3c1",
+          "instance_id": "sim-7936405fc465",
           "report_id": "finance-review"
         }
       ],
       "instances": [
         {
           "diagnostic": false,
-          "id": "sim-2228f36d06bf",
+          "id": "sim-cd1d1124bc8e",
           "report_id": "sales-overview",
           "state": "released"
         },
         {
           "diagnostic": false,
-          "id": "sim-b4e3a595a203",
+          "id": "sim-b4a3727ef272",
           "report_id": "finance-review",
           "state": "released"
         },
         {
           "diagnostic": true,
-          "id": "sim-a4b91052e3c1",
+          "id": "sim-7936405fc465",
           "report_id": "finance-review",
           "state": "released"
         }
@@ -130,8 +130,8 @@
     "mode": "normal",
     "packet_version": "synthetic-evidence-v1",
     "result": {
-      "case_fingerprint": "cb506922d1f09af401f88ff93e6adfc9b41281b8b0945a95f6a8948773bb9073",
-      "delta": "-25.00",
+      "case_fingerprint": "9193a876ea584ff2d5cf918e2a6b7f9305ad972f4eee6cf1796d197e4b9d324b",
+      "delta": "-40.00",
       "differences": [
         {
           "a": null,
@@ -148,7 +148,7 @@
           "paid"
         ],
         "changed_field": "status",
-        "impact": "25.00",
+        "impact": "40.00",
         "result": {
           "complete": true,
           "definition_hash": "741b4841d513f7ea2002b642ab4bdb5a5b43a38eafc49b52b0e513d5d0be4c1e",
@@ -156,14 +156,14 @@
             "region": null,
             "status": null
           },
-          "instance_id": "sim-a4b91052e3c1",
-          "minor": "20500",
+          "instance_id": "sim-7936405fc465",
+          "minor": "22000",
           "name": "Finance review",
           "non_null_rows": 4,
           "report_id": "finance-review",
           "selected_rows": 4,
           "snapshot": "synthetic-orders-v1",
-          "total": "205.00"
+          "total": "220.00"
         },
         "unchanged_fields": [
           "region",
@@ -183,14 +183,14 @@
             "region": null,
             "status": null
           },
-          "instance_id": "sim-2228f36d06bf",
-          "minor": "20500",
+          "instance_id": "sim-cd1d1124bc8e",
+          "minor": "22000",
           "name": "Sales overview",
           "non_null_rows": 4,
           "report_id": "sales-overview",
           "selected_rows": 4,
           "snapshot": "synthetic-orders-v1",
-          "total": "205.00"
+          "total": "220.00"
         },
         {
           "complete": true,
@@ -201,7 +201,7 @@
               "paid"
             ]
           },
-          "instance_id": "sim-b4e3a595a203",
+          "instance_id": "sim-b4a3727ef272",
           "minor": "18000",
           "name": "Finance review",
           "non_null_rows": 3,
@@ -211,18 +211,18 @@
           "total": "180.00"
         }
       ],
-      "percent_delta": "-12.20",
+      "percent_delta": "-18.18",
       "phase": "diagnose",
       "residual": "0.00",
-      "software_version": "0.3.0",
+      "software_version": "0.4.0",
       "status": "demonstrated",
-      "summary": "Rerunning B with A’s status selection changes 180.00 to 205.00. The remaining difference from A is 0.00.",
+      "summary": "Rerunning B with A’s status selection changes 180.00 to 220.00. The remaining difference from A is 0.00.",
       "unknowns": [
         "This does not decide which status selection matches the intended business definition."
       ]
     },
-    "software_version": "0.3.0",
+    "software_version": "0.4.0",
     "source_stale": false
   },
-  "sha256": "5f68824665c9289c6fa1df2b55f3d7767b63e5f903157d949dfcc5475a6ed181"
+  "sha256": "e6663086246a3420b6eb436f2faa06a995ff99e93b19205c25b4ed0cff2fe012"
 }

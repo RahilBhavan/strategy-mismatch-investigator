@@ -10,7 +10,7 @@ with sync_playwright() as p:
  b=p.firefox.launch(executable_path='/home/rahil/.cache/ms-playwright/firefox-1555/firefox/firefox',headless=True)
  page=b.new_page(viewport={'width':390,'height':1000})
  page.goto('http://127.0.0.1:8807',wait_until='networkidle');page.get_by_role('button',name='Compare totals').click();page.get_by_role('button',name='Test the status selection').click();page.get_by_role('heading',name='The status selection explains the gap.').wait_for()
- data=page.evaluate('''()=>[...document.querySelectorAll('.report-table th,.report-table .unit,.report-table .subline,.report-table caption,.experiment-values dt,.finding h3')].map(e=>{let p=e,bg;while(p){bg=getComputedStyle(p).backgroundColor;if(!bg.endsWith(', 0)')&&bg!=='transparent')break;p=p.parentElement}return {size:parseFloat(getComputedStyle(e).fontSize),fg:getComputedStyle(e).color,bg:bg||'rgb(255,255,255)'}})''')
+ data=page.evaluate('''()=>[...document.querySelectorAll('.report-table th,.report-table .unit,.report-table .subline,.report-table caption,.ledger th,.ledger .subline,.finding h3')].map(e=>{let p=e,bg;while(p){bg=getComputedStyle(p).backgroundColor;if(!bg.endsWith(', 0)')&&bg!=='transparent')break;p=p.parentElement}return {size:parseFloat(getComputedStyle(e).fontSize),fg:getComputedStyle(e).color,bg:bg||'rgb(255,255,255)'}})''')
  b.close()
 import re
 ratios=[]
