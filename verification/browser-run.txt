@@ -1,0 +1,143 @@
+[
+  {
+    "check": "compute, experiment, JSON/HTML export, full HTTP-server restart, packet reopen",
+    "result": "pass"
+  },
+  {
+    "check": "changed source values recompute; stale result removed",
+    "result": "pass"
+  },
+  {
+    "check": "equal, snapshot, ambiguous and missing-context states",
+    "result": "pass"
+  },
+  {
+    "check": "injected failures, one bounded retry, canceled attempt cannot publish",
+    "result": "pass"
+  },
+  {
+    "check": "no external network dependency",
+    "result": "pass"
+  },
+  {
+    "check": "responsive demonstrated state",
+    "result": "pass",
+    "width": 320,
+    "scroll": 320,
+    "font": true
+  },
+  {
+    "check": "responsive demonstrated state",
+    "result": "pass",
+    "width": 390,
+    "scroll": 390,
+    "font": true
+  },
+  {
+    "check": "responsive demonstrated state",
+    "result": "pass",
+    "width": 768,
+    "scroll": 768,
+    "font": true
+  },
+  {
+    "check": "responsive demonstrated state",
+    "result": "pass",
+    "width": 1120,
+    "scroll": 1120,
+    "font": true
+  },
+  {
+    "check": "responsive demonstrated state",
+    "result": "pass",
+    "width": 1440,
+    "scroll": 1440,
+    "font": true
+  },
+  {
+    "check": "keyboard traversal and visible focus",
+    "result": "pass",
+    "focus": [
+      {
+        "tag": "A",
+        "id": "",
+        "outline": "solid"
+      },
+      {
+        "tag": "A",
+        "id": "",
+        "outline": "solid"
+      },
+      {
+        "tag": "A",
+        "id": "",
+        "outline": "solid"
+      },
+      {
+        "tag": "SELECT",
+        "id": "scenario",
+        "outline": "solid"
+      },
+      {
+        "tag": "SELECT",
+        "id": "report-0",
+        "outline": "solid"
+      },
+      {
+        "tag": "SELECT",
+        "id": "report-1",
+        "outline": "solid"
+      },
+      {
+        "tag": "BUTTON",
+        "id": "compare",
+        "outline": "solid"
+      },
+      {
+        "tag": "SUMMARY",
+        "id": "",
+        "outline": "solid"
+      },
+      {
+        "tag": "SUMMARY",
+        "id": "",
+        "outline": "solid"
+      },
+      {
+        "tag": "SUMMARY",
+        "id": "",
+        "outline": "solid"
+      },
+      {
+        "tag": "SUMMARY",
+        "id": "",
+        "outline": "solid"
+      },
+      {
+        "tag": "SUMMARY",
+        "id": "",
+        "outline": "solid"
+      },
+      {
+        "tag": "SUMMARY",
+        "id": "",
+        "outline": "solid"
+      },
+      {
+        "tag": "SUMMARY",
+        "id": "",
+        "outline": "solid"
+      },
+      {
+        "tag": "SUMMARY",
+        "id": "",
+        "outline": "solid"
+      },
+      {
+        "tag": "SUMMARY",
+        "id": "",
+        "outline": "solid"
+      }
+    ]
+  }
+]

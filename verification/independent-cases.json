@@ -1,0 +1,379 @@
+{
+  "authorship": "Independent expectations frozen before inspecting schema, adapter, investigation or existing tests.",
+  "conventions": "Each row is [exact decimal-string amount,status,region]; unique IDs assigned by test builder. Difference=B-A; variant reruns B with A status; impact=variant-B; residual=A-variant. Reports are copies of app.fixtures.example. No live Strategy tested.",
+  "cases": [
+    {
+      "id": "fractional-negative",
+      "rows": [
+        [
+          "12.35",
+          "paid",
+          "East"
+        ],
+        [
+          "-2.10",
+          "refunded",
+          "East"
+        ],
+        [
+          "4.75",
+          "paid",
+          "West"
+        ]
+      ],
+      "a": null,
+      "b": [
+        "paid"
+      ],
+      "expected": {
+        "status": "demonstrated",
+        "a": "15.00",
+        "b": "17.10",
+        "difference": "2.10",
+        "variant": "15.00",
+        "impact": "-2.10",
+        "residual": "0.00"
+      },
+      "description": "All versus paid; excluding a negative refund increases B."
+    },
+    {
+      "id": "reverse-selection",
+      "rows": [
+        [
+          "8.25",
+          "paid",
+          "East"
+        ],
+        [
+          "3.50",
+          "pending",
+          "West"
+        ],
+        [
+          "-1.25",
+          "paid",
+          "West"
+        ]
+      ],
+      "a": [
+        "paid"
+      ],
+      "b": null,
+      "expected": {
+        "status": "demonstrated",
+        "a": "7.00",
+        "b": "10.50",
+        "difference": "3.50",
+        "variant": "7.00",
+        "impact": "-3.50",
+        "residual": "0.00"
+      },
+      "description": "Paid versus all reverses the usual experiment direction."
+    },
+    {
+      "id": "renamed-statuses",
+      "rows": [
+        [
+          "19.99",
+          "settled",
+          "North"
+        ],
+        [
+          "0.01",
+          "held",
+          "South"
+        ],
+        [
+          "-5.00",
+          "settled",
+          "South"
+        ]
+      ],
+      "a": null,
+      "b": [
+        "held"
+      ],
+      "expected": {
+        "status": "demonstrated",
+        "a": "15.00",
+        "b": "0.01",
+        "difference": "-14.99",
+        "variant": "15.00",
+        "impact": "14.99",
+        "residual": "0.00"
+      },
+      "description": "Unseen labels; held-only is selected rather than a hardcoded paid label."
+    },
+    {
+      "id": "two-specific-selections",
+      "rows": [
+        [
+          "-10.50",
+          "accepted",
+          "North"
+        ],
+        [
+          "2.25",
+          "queued",
+          "South"
+        ],
+        [
+          "0.00",
+          "accepted",
+          "South"
+        ]
+      ],
+      "a": [
+        "accepted"
+      ],
+      "b": [
+        "queued"
+      ],
+      "expected": {
+        "status": "demonstrated",
+        "a": "-10.50",
+        "b": "2.25",
+        "difference": "12.75",
+        "variant": "-10.50",
+        "impact": "-12.75",
+        "residual": "0.00"
+      },
+      "description": "Two non-all selections with negative A and zero-valued included row."
+    },
+    {
+      "id": "zero-baseline",
+      "rows": [
+        [
+          "-4.20",
+          "closed",
+          "East"
+        ],
+        [
+          "4.20",
+          "closed",
+          "West"
+        ],
+        [
+          "1.05",
+          "open",
+          "East"
+        ]
+      ],
+      "a": [
+        "closed"
+      ],
+      "b": null,
+      "expected": {
+        "status": "demonstrated",
+        "a": "0.00",
+        "b": "1.05",
+        "difference": "1.05",
+        "variant": "0.00",
+        "impact": "-1.05",
+        "residual": "0.00",
+        "percentage": null
+      },
+      "description": "A sums to zero; percentage is unavailable, with a nonzero status effect."
+    },
+    {
+      "id": "negative-both",
+      "rows": [
+        [
+          "-3.33",
+          "reversed",
+          "East"
+        ],
+        [
+          "-6.67",
+          "reversed",
+          "West"
+        ],
+        [
+          "-0.25",
+          "held",
+          "West"
+        ]
+      ],
+      "a": null,
+      "b": [
+        "reversed"
+      ],
+      "expected": {
+        "status": "demonstrated",
+        "a": "-10.25",
+        "b": "-10.00",
+        "difference": "0.25",
+        "variant": "-10.25",
+        "impact": "-0.25",
+        "residual": "0.00"
+      },
+      "description": "Both originals are negative and exact cents matter."
+    },
+    {
+      "id": "equal-identical",
+      "rows": [
+        [
+          "1.11",
+          "paid",
+          "East"
+        ],
+        [
+          "-1.11",
+          "paid",
+          "West"
+        ],
+        [
+          "0.00",
+          "other",
+          "East"
+        ]
+      ],
+      "a": null,
+      "b": null,
+      "expected": {
+        "status": "equal",
+        "a": "0.00",
+        "b": "0.00",
+        "difference": "0.00"
+      },
+      "description": "Identical selections yield zero without a cause claim."
+    },
+    {
+      "id": "equal-different-definitions",
+      "rows": [
+        [
+          "7.20",
+          "paid",
+          "East"
+        ],
+        [
+          "3.30",
+          "other",
+          "West"
+        ],
+        [
+          "-3.30",
+          "other",
+          "East"
+        ]
+      ],
+      "a": null,
+      "b": [
+        "paid"
+      ],
+      "definition_b": "SUM(amount) + 0",
+      "expected": {
+        "status": "equal",
+        "a": "7.20",
+        "b": "7.20",
+        "difference": "0.00"
+      },
+      "description": "Different captured definition strings and status selections yield equal totals; no semantic equivalence."
+    },
+    {
+      "id": "overlapping-selections",
+      "rows": [
+        [
+          "10.10",
+          "paid",
+          "East"
+        ],
+        [
+          "2.20",
+          "pending",
+          "East"
+        ],
+        [
+          "3.30",
+          "paid",
+          "West"
+        ],
+        [
+          "4.40",
+          "pending",
+          "West"
+        ]
+      ],
+      "a": null,
+      "b": [
+        "paid"
+      ],
+      "region_b": [
+        "West"
+      ],
+      "expected": {
+        "status": "unresolved",
+        "a": "20.00",
+        "b": "3.30",
+        "difference": "-16.70",
+        "variant": "7.70",
+        "impact": "4.40",
+        "residual": "12.30"
+      },
+      "description": "Status and region both differ; B with A status still excludes East, leaving residual 12.30."
+    },
+    {
+      "id": "missing-unit",
+      "rows": [
+        [
+          "2.50",
+          "paid",
+          "East"
+        ],
+        [
+          "0.75",
+          "other",
+          "West"
+        ]
+      ],
+      "a": null,
+      "b": [
+        "paid"
+      ],
+      "unit_b": "",
+      "expected": {
+        "status": "unresolved",
+        "a": "3.25",
+        "b": "2.50",
+        "difference": "-0.75",
+        "no_definitive_cause": true
+      },
+      "description": "Missing unit blocks comparability and a definitive cause; arithmetic here is reference-only if execution is blocked."
+    },
+    {
+      "id": "equal-different-status-selections",
+      "rows": [
+        [
+          "7.20",
+          "paid",
+          "East"
+        ],
+        [
+          "3.30",
+          "other",
+          "West"
+        ],
+        [
+          "-3.30",
+          "other",
+          "East"
+        ]
+      ],
+      "a": null,
+      "b": [
+        "paid"
+      ],
+      "expected": {
+        "status": "equal",
+        "a": "7.20",
+        "b": "7.20",
+        "difference": "0.00"
+      },
+      "description": "Supported equal-total control: differing status selections, offsetting excluded rows; identical SUM(amount) definitions."
+    }
+  ],
+  "reviewer_corrections": [
+    "Frozen equal-different-definitions uses unsupported SUM(amount) + 0. Its numerical reference is valid but expecting equal status was a reviewer scope error: correct supported behavior is unresolved with no execution. Original expectation retained. Supplemental supported equal control below reuses the independently frozen amounts and selections with unchanged SUM(amount).",
+    "Frozen overlapping-selections variant/impact/residual describe a reference counterfactual, not a requirement to run an experiment when two fields differ. Unresolved without an experiment is an acceptable abstention. Frozen residual convention A-variant is used only for this unexecuted reference; implementation uses variant-A. All executed single-cause residuals are zero."
+  ]
+}

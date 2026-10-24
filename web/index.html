@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="A working, synthetic proof of concept for explaining differences between Strategy report totals."><title>Number mismatch investigator · Strategy POC</title><link rel="icon" href="/favicon.svg"><link rel="preload" href="/assets/Inter.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="/style.css"></head>
+<body>
+<a class="skip" href="#workspace">Skip to investigation</a>
+<div class="simulation">Proof of concept — simulated Strategy connection <span>Live integration: not tested</span></div>
+<header class="app-header"><a href="/" class="wordmark">Strategy <span>/</span> <strong>Investigation lab</strong></a><a href="/contract.html">Integration boundary <span aria-hidden="true">↗</span></a></header>
+<main>
+<div class="page-title"><div><p class="eyebrow">Number mismatch investigator</p><h1>Explain the difference.</h1><p class="lede">Compare two totals. Test a possible cause. Inspect the evidence.</p></div><div class="local-status"><span aria-hidden="true">◉</span> Synthetic data only<br><span class="muted">Computed locally. No AI diagnosis.</span></div></div>
+<div class="work-layout">
+<aside aria-label="Investigation setup" class="setup"><div class="step-label">01 / Set up the comparison</div><label for="scenario">Example investigation</label><select id="scenario"></select><p class="hint">Each example runs against underlying synthetic order records.</p><div id="report-picks"></div>
+<button id="compare" class="primary">Compare totals <span aria-hidden="true">→</span></button><button id="cancel" class="secondary" hidden>Cancel investigation</button>
+<details class="tools"><summary>Source &amp; test controls</summary><p class="hint">Change an amount to test whether the explanation updates. Values below are illustrative, not money.</p><label for="amount">Amount on the refunded order</label><input id="amount" type="text" inputmode="decimal" value="40.00"><button id="save-amount" class="secondary">Update synthetic source</button><label for="condition">Injected condition</label><select id="condition"><option value="normal">Normal execution</option><option value="denied">Evidence unavailable</option><option value="expired">Session expired</option><option value="transient">Transient failure, then retry</option><option value="rate_limit">Rate limit, then retry</option><option value="timeout">Timeout</option><option value="incomplete">Incomplete result</option><option value="error">Query failure</option><option value="slow">Slow execution (cancel test)</option></select><p class="hint">Conditions are simulated; they do not verify Strategy permissions.</p><label for="case-file">Load a synthetic case JSON</label><input id="case-file" type="file" accept="application/json,.json"></details>
+<details class="reopen"><summary>Continue a review</summary><label for="packet-file">Reopen an evidence packet</label><input id="packet-file" type="file" accept="application/json,.json"><p class="hint">The packet's arithmetic is recomputed locally.</p></details>
+</aside>
+<section id="workspace" class="worksheet" aria-labelledby="worksheet-title"><div class="worksheet-head"><div><p class="eyebrow">02 / Investigate</p><h2 id="worksheet-title" tabindex="-1">Report comparison</h2></div><span id="source-tag" class="source-tag">Fixed synthetic snapshot</span></div>
+<div id="message" role="status" aria-live="polite"></div><div id="comparison"><div class="empty"><p class="empty-mark" aria-hidden="true">A / B</p><h3>What is behind the gap?</h3><p>Choose two reports to investigate. Their totals and context will appear here.</p><p class="hint">The first example compares all orders with paid orders.</p></div></div>
+<div id="diagnosis"></div><div id="evidence"></div>
+</section>
+</div>
+<footer><p>An independent product proof of concept. Report values, connections and identities are synthetic.</p><p>A numerical explanation does not decide which business definition is correct.</p></footer>
+</main><noscript>This local investigation requires JavaScript. No third-party scripts are used.</noscript><script type="module" src="/app.js"></script>
+</body></html>

@@ -1,0 +1,14 @@
+{
+  "forced_colors": {
+    "width": 390,
+    "focus": "solid",
+    "buttonBackground": "rgb(208, 208, 215)",
+    "buttonColor": "rgb(0, 0, 0)",
+    "buttonBorder": "solid"
+  },
+  "reduced_motion": {
+    "animation": "none",
+    "opacity": "1"
+  },
+  "limits": "Linux Firefox media emulation, not a physical device check."
+}

@@ -1,0 +1,42 @@
+{
+  "id": "status-reconciliation",
+  "reader": "Analyst reviewing whether one status selection explains a numerical gap",
+  "decision": "Inspect the evidence before choosing the intended business definition",
+  "point": "Changing only the status selection changes B from 180 to 220, leaving 0 residual.",
+  "comparison": "Original report B versus B rerun with report A status selection",
+  "title": "The status selection explains the gap.",
+  "caption": "Illustrative values, computed from synthetic orders.",
+  "form": "table",
+  "values_count": 6,
+  "encodings": [],
+  "accents": 1,
+  "accent_meaning": "title-value",
+  "estimates": {
+    "present": false
+  },
+  "illustration": true,
+  "illustration_labeled": true,
+  "sources": [
+    {
+      "title": "Locally authored synthetic record fixture",
+      "url": "../app/fixtures.py",
+      "as_of": "2026-10-24"
+    }
+  ],
+  "alt": "Synthetic A is 220 and B is 180. Rerunning B with all statuses returns 220; measured impact 40 and residual 0. This does not decide business correctness.",
+  "sizes_checked": [
+    "390x1000",
+    "1440x1000"
+  ],
+  "feed_width_viewed": true,
+  "min_label_px": 14,
+  "point_px": 19,
+  "contrast_min": 7.14,
+  "measured_by": "Firefox computed styles and WCAG luminance calculation; quantitative labels only",
+  "warn_reasons": {
+    "title shares no number": "The adjacent comparison carries the actual values; the interactive heading states the demonstrated mechanism.",
+    "smallest label renders": "14px app labels viewed at actual 390px width; this is a working UI rather than a social raster.",
+    "the point renders": "19px finding heading in a dense analyst interface; visible at actual browser width.",
+    "no five-second test recorded": "Independent agent critique completed; no human timed comprehension test was run."
+  }
+}

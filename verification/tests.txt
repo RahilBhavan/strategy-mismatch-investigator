@@ -1,0 +1,35 @@
+test_boundary (test_core.CoreTests.test_boundary) ... ok
+test_comparison_is_candidate_not_proof (test_core.CoreTests.test_comparison_is_candidate_not_proof) ... ok
+test_context_controls (test_core.CoreTests.test_context_controls) ... ok
+test_execution_deadline (test_core.CoreTests.test_execution_deadline) ... ok
+test_faults_and_retry_limit (test_core.CoreTests.test_faults_and_retry_limit) ... ok
+test_overflow_and_completeness (test_core.CoreTests.test_overflow_and_completeness) ... ok
+test_record_backed_experiment_and_no_mutation (test_core.CoreTests.test_record_backed_experiment_and_no_mutation) ... ok
+test_zero_negative_and_exact_large (test_core.CoreTests.test_zero_negative_and_exact_large) ... ok
+test_canceled_cannot_publish_and_cleanup_is_local (test_core.StoreTests.test_canceled_cannot_publish_and_cleanup_is_local) ... ok
+test_change_invalidates_and_old_export_is_versioned (test_core.StoreTests.test_change_invalidates_and_old_export_is_versioned) ... ok
+test_failed_attempt_has_no_result_and_can_retry (test_core.StoreTests.test_failed_attempt_has_no_result_and_can_retry) ... ok
+test_incomplete_export_reopens_as_unresolved (test_core.StoreTests.test_incomplete_export_reopens_as_unresolved) ... ok
+test_restart_marks_unfinished_interrupted (test_core.StoreTests.test_restart_marks_unfinished_interrupted) ... ok
+test_retry_idempotent_and_restart (test_core.StoreTests.test_retry_idempotent_and_restart) ... ok
+test_software_revision_invalidates_old_conclusions (test_core.StoreTests.test_software_revision_invalidates_old_conclusions) ... ok
+test_tampered_packet_and_recomputed_fraud_rejected (test_core.StoreTests.test_tampered_packet_and_recomputed_fraud_rejected) ... ok
+test_end_to_end_public_api (test_http.HttpTests.test_end_to_end_public_api) ... ok
+test_intake_and_origin (test_http.HttpTests.test_intake_and_origin) ... ok
+test_static_app (test_http.HttpTests.test_static_app) ... ok
+test_equal_different_definitions (test_independent.IndependentTests.test_equal_different_definitions) ... ok
+test_equal_different_status_selections (test_independent.IndependentTests.test_equal_different_status_selections) ... ok
+test_equal_identical (test_independent.IndependentTests.test_equal_identical) ... ok
+test_fractional_negative (test_independent.IndependentTests.test_fractional_negative) ... ok
+test_missing_unit (test_independent.IndependentTests.test_missing_unit) ... ok
+test_negative_both (test_independent.IndependentTests.test_negative_both) ... ok
+test_overlapping_selections (test_independent.IndependentTests.test_overlapping_selections) ... ok
+test_renamed_statuses (test_independent.IndependentTests.test_renamed_statuses) ... ok
+test_reverse_selection (test_independent.IndependentTests.test_reverse_selection) ... ok
+test_two_specific_selections (test_independent.IndependentTests.test_two_specific_selections) ... ok
+test_zero_baseline (test_independent.IndependentTests.test_zero_baseline) ... ok
+
+----------------------------------------------------------------------
+Ran 30 tests in 3.851s
+
+OK

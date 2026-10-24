@@ -1,0 +1,6 @@
+status-reconciliation: PASS
+  WARN*: title shares no number or quantifier with the point; does it state the point or name a topic?  [accepted: The adjacent comparison carries the actual values; the interactive heading states the demonstrated mechanism.]
+  WARN*: smallest label renders at 14px; check it opened on a phone  [accepted: 14px app labels viewed at actual 390px width; this is a working UI rather than a social raster.]
+  WARN*: the point renders at 19px; it may not read in the feed unopened  [accepted: 19px finding heading in a dense analyst interface; visible at actual browser width.]
+  WARN*: no five-second test recorded  [accepted: Independent agent critique completed; no human timed comprehension test was run.]
+RESULT: PASS
