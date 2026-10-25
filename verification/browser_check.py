@@ -11,7 +11,7 @@ from app.store import Store
 from app.fixtures import example
 from playwright.sync_api import sync_playwright
 sys.path.insert(0,str(Path(__file__).resolve().parent))
-from engine import CAPTURE_STYLE, ENGINE, launch, named
+from engine import HOST, capture, ENGINE, TAB, launch, named
 
 ROOT=Path(__file__).resolve().parents[1]
 OUT=ROOT/'verification'
@@ -40,11 +40,11 @@ with tempfile.TemporaryDirectory() as tmp:
         page.get_by_role('button',name='Compare totals').click()
         page.get_by_role('button',name='Test the status selection').wait_for()
         assert page.locator('.report-table .amount').all_text_contents()==['220','180']
-        page.screenshot(path=str(OUT/named('r4-candidate-1440.png')),full_page=True,style=CAPTURE_STYLE)
+        capture(page,str(OUT/named('r4-candidate-1440.png')))
         page.get_by_role('button',name='Test the status selection').click()
         page.get_by_role('heading',name='The status selection explains the gap.').wait_for()
         assert page.locator('.ledger .num').all_text_contents()==['180','+40','220','220','0']
-        page.screenshot(path=str(OUT/named('r4-demonstrated-1440.png')),full_page=True,style=CAPTURE_STYLE)
+        capture(page,str(OUT/named('r4-demonstrated-1440.png')))
         with page.expect_download() as info:page.get_by_role('button',name='Export evidence JSON').click()
         packet_path=OUT/named('browser-export.json');info.value.save_as(packet_path)
         with page.expect_download() as info:page.get_by_role('button',name='Save readable report').click()
@@ -74,7 +74,7 @@ with tempfile.TemporaryDirectory() as tmp:
             page.get_by_role('button',name='Compare totals').click()
             page.get_by_role('heading',name=title).wait_for()
             assert page.locator('#diagnose').count()==0
-            page.screenshot(path=str(OUT/named(f'r4-{name}-1440.png')),full_page=True,style=CAPTURE_STYLE)
+            capture(page,str(OUT/named(f'r4-{name}-1440.png')))
         receipts.append({'check':'equal, snapshot, ambiguous and missing-context states','result':'pass'})
         page.locator('#scenario').select_option('status')
         page.locator('.tools').evaluate('(e)=>e.open=true')
@@ -113,24 +113,24 @@ with tempfile.TemporaryDirectory() as tmp:
             metrics=page.evaluate('({width:innerWidth,scroll:document.documentElement.scrollWidth,font:document.fonts.check("15px Inter")})')
             assert metrics['scroll']<=width,metrics
             assert metrics['font']
-            page.screenshot(path=str(OUT/named(f'r4-demonstrated-{width}.png')),full_page=True,style=CAPTURE_STYLE)
+            capture(page,str(OUT/named(f'r4-demonstrated-{width}.png')))
             page.locator('.tools').evaluate('(e)=>e.open=false')
             receipts.append({'check':'responsive demonstrated state','result':'pass',**metrics})
         page.set_viewport_size({'width':390,'height':1100})
         page.locator('#scenario').select_option('snapshots')
         page.get_by_role('button',name='Compare totals').click()
         page.get_by_role('heading',name='The evidence does not isolate a cause.').wait_for()
-        page.screenshot(path=str(OUT/named('r4-unresolved-390.png')),full_page=True,style=CAPTURE_STYLE)
+        capture(page,str(OUT/named('r4-unresolved-390.png')))
         # Keyboard focus is observable; traverse from the skip link into the real controls.
         page.goto(url,wait_until='networkidle')
         focus=[]
         for _ in range(16):
-            page.keyboard.press('Tab')
+            page.keyboard.press(TAB)
             focus.append(page.evaluate('({tag:document.activeElement.tagName,id:document.activeElement.id,outline:getComputedStyle(document.activeElement).outlineStyle})'))
         assert any(item['id']=='compare' and item['outline']=='solid' for item in focus),focus
         receipts.append({'check':'keyboard traversal and visible focus','result':'pass','focus':focus})
         assert not errors,errors
-        (OUT/named('browser-checks.json')).write_text(json.dumps({'browser':f'{ENGINE} {browser.version}, Linux headless','checks':receipts,'page_errors':errors},indent=2)+'\n')
+        (OUT/named('browser-checks.json')).write_text(json.dumps({'browser':f'{ENGINE} {browser.version}, {HOST} headless','checks':receipts,'page_errors':errors},indent=2)+'\n')
         browser.close()
     stop(http,thread)
 print(json.dumps(receipts,indent=2))

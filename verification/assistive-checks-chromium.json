@@ -1,0 +1,80 @@
+{
+  "browser": "chromium 156.0.8078.4, Linux",
+  "axe_core": "4.14.0",
+  "axe_tags": [
+    "wcag2a",
+    "wcag2aa",
+    "wcag21a",
+    "wcag21aa",
+    "wcag22aa"
+  ],
+  "axe": {
+    "start": {
+      "violations": [],
+      "passes": 24,
+      "incomplete": [
+        "color-contrast"
+      ]
+    },
+    "compared": {
+      "violations": [],
+      "passes": 28,
+      "incomplete": [
+        "color-contrast"
+      ]
+    },
+    "finding": {
+      "violations": [],
+      "passes": 30,
+      "incomplete": [
+        "color-contrast"
+      ]
+    },
+    "evidence open": {
+      "violations": [],
+      "passes": 33,
+      "incomplete": [
+        "color-contrast"
+      ]
+    },
+    "denied": {
+      "violations": [],
+      "passes": 25,
+      "incomplete": [
+        "color-contrast"
+      ]
+    }
+  },
+  "status_region": {
+    "role": "status",
+    "live": "polite",
+    "text": "Required report evidence is unavailable.Retry investigation"
+  },
+  "touch": {
+    "device": "Pixel 7",
+    "landing": {
+      "focus": "finding-title",
+      "top": 150,
+      "ledger_top": 281,
+      "viewport": [
+        412,
+        839
+      ],
+      "horizontal_scroll": false
+    },
+    "targets": 22,
+    "below_24px": [],
+    "below_44px_tall": []
+  },
+  "forced_colors": {
+    "ledger_total_rule": "double",
+    "ledger_row_rule": "solid",
+    "diff_mark_border": "solid",
+    "button_border": "solid",
+    "focus_outline": [
+      "solid",
+      "3px"
+    ]
+  },
+  "result": "pass"
+}

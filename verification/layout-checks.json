@@ -53,6 +53,6 @@
       14
     ]
   },
-  "browser": "firefox 157.0",
-  "limits": "Linux emulations; not physical Windows, Safari, device or screen-reader proof."
+  "browser": "firefox 157.0, Linux",
+  "limits": "Headless firefox on Linux with emulated widths and media; not physical Windows, Safari, device or screen-reader proof."
 }

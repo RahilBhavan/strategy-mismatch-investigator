@@ -53,6 +53,6 @@
       14
     ]
   },
-  "browser": "chromium 156.0.8078.4",
-  "limits": "Linux emulations; not physical Windows, Safari, device or screen-reader proof."
+  "browser": "chromium 156.0.8078.4, Linux",
+  "limits": "Headless chromium on Linux with emulated widths and media; not physical Windows, Safari, device or screen-reader proof."
 }

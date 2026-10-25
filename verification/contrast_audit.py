@@ -7,7 +7,7 @@ import sys
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from engine import CAPTURE_STYLE, ENGINE, isolated_server, launch, named
+from engine import HOST, ENGINE, isolated_server, launch, named
 
 ROOT = Path(__file__).resolve().parents[1]
 # Resolve the effective background by walking ancestors; blend translucent layers over white.
@@ -74,7 +74,7 @@ for state, rows in states.items():
     for row in rows:
         if row["ratio"] < row["needed"] and not row["disabled"]:
             failures.append(dict(state=state, **row))
-summary = {"browser": f"{ENGINE} {version}", "states": {k: dict(elements=len(v), minimum=min(r["ratio"] for r in v if not r["disabled"])) for k, v in states.items()},
+summary = {"browser": f"{ENGINE} {version}, {HOST}", "states": {k: dict(elements=len(v), minimum=min(r["ratio"] for r in v if not r["disabled"])) for k, v in states.items()},
            "failures": failures, "excluded": "disabled controls (WCAG exempts inactive components)",
            "limits": "Text nodes and control values only, at 1280 and 390 CSS px; translucency is blended. Hover/focus colours, non-text contrast and physical displays are not measured."}
 (ROOT / "verification" / named("contrast-audit.json")).write_text(json.dumps(summary, indent=2) + "\n")

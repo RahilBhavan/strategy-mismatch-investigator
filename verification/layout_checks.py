@@ -4,7 +4,7 @@ import sys
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 sys.path.insert(0,str(Path(__file__).resolve().parent))
-from engine import CAPTURE_STYLE, ENGINE, isolated_server, launch, named
+from engine import HOST, capture, ENGINE, isolated_server, launch, named
 ROOT=Path(__file__).resolve().parents[1]
 with isolated_server() as URL, sync_playwright() as p:
  browser=launch(p)
@@ -19,8 +19,13 @@ with isolated_server() as URL, sync_playwright() as p:
   assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
   values.append({'width':width,'no_overflow':True})
  page.set_viewport_size({'width':390,'height':1000})
- for name,options in [('high-contrast',{'forced_colors':'active'}),('reduced-motion',{'reduced_motion':'reduce'})]:
-  page.emulate_media(**options);page.evaluate('scrollTo(0,0)');page.screenshot(path=str(ROOT/'verification'/named(f'r4-{name}-390.png')),full_page=True,style=CAPTURE_STYLE)
+ # Each mode is set completely so one capture cannot inherit the previous mode's settings.
+ for name,options in [('high-contrast',{'forced_colors':'active','reduced_motion':'no-preference'}),('reduced-motion',{'forced_colors':'none','reduced_motion':'reduce'})]:
+  page.emulate_media(**options);capture(page,str(ROOT/'verification'/named(f'r4-{name}-390.png')))
+  assert page.evaluate("matchMedia('(forced-colors: active)').matches")==(name=='high-contrast'),name
+  if name=='reduced-motion':
+   page.locator('.finding').evaluate("e=>{e.classList.remove('result-enter');void e.offsetWidth;e.classList.add('result-enter')}")
+   assert page.evaluate('document.getAnimations().length')==0,'animation ran under reduced motion'
   assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
   values.append({'mode':name,'no_overflow':True})
  page.emulate_media(forced_colors='none',reduced_motion='reduce')
@@ -42,12 +47,12 @@ with isolated_server() as URL, sync_playwright() as p:
  # Totals may wrap only at digit-group commas.
  broken=page.evaluate('''()=>[...document.querySelectorAll('.report-table .amount')].filter(e=>{const r=document.createRange();for(const n of e.childNodes){if(n.nodeType!==3)continue;r.selectNodeContents(n);if(r.getClientRects().length>1)return true}return false}).map(e=>e.textContent)''')
  assert not broken,broken
- page.screenshot(path=str(ROOT/'verification'/named('r4-stress-320.png')),full_page=True,style=CAPTURE_STYLE)
+ capture(page,str(ROOT/'verification'/named('r4-stress-320.png')))
  values.append({'mode':'long reports, units, exact large amounts, open evidence at 320px','no_overflow':True})
  page.goto(URL,wait_until='networkidle')
  page.locator('#scenario').select_option('status');page.get_by_role('button',name='Compare totals').click();page.get_by_role('button',name='Test the status selection').click();page.get_by_role('heading',name='The status selection explains the gap.').wait_for()
  # Collect font sizes; contrast measurements are recorded separately in contrast-measurements.json.
  metrics=page.evaluate('''()=>{const e=document.querySelector('.finding h3');return {point_px:parseFloat(getComputedStyle(e).fontSize),label_sizes:[...document.querySelectorAll('.report-table th,.report-table .subline,.report-table .unit,.report-table caption,.ledger th,.ledger .subline')].map(e=>parseFloat(getComputedStyle(e).fontSize))}}''')
- (ROOT/'verification'/named('layout-checks.json')).write_text(json.dumps({'checks':values,'quantitative_text':metrics,'browser':f'{ENGINE} {browser.version}','limits':'Linux emulations; not physical Windows, Safari, device or screen-reader proof.'},indent=2)+'\n')
+ (ROOT/'verification'/named('layout-checks.json')).write_text(json.dumps({'checks':values,'quantitative_text':metrics,'browser':f'{ENGINE} {browser.version}, {HOST}','limits':f'Headless {ENGINE} on {HOST} with emulated widths and media; not physical Windows, Safari, device or screen-reader proof.'},indent=2)+'\n')
  browser.close()
 print(json.dumps(values,indent=2));print(metrics)

@@ -41,7 +41,7 @@ The app tests exercise its public computation/HTTP interfaces, cancellation, sta
 Browser checks run in Firefox on this host. Chromium never fires `requestAnimationFrame` on this Arch host, so its checks stall here. Run Chromium and WebKit in Microsoft's Playwright Ubuntu image instead:
 
 ```bash
-verification/run_matrix.sh   # needs podman and the demo server on 8807
+verification/run_matrix.sh   # needs podman; each check starts its own server and throwaway database
 ```
 
 ## Files and boundaries

@@ -1,0 +1,70 @@
+{
+  "browser": "webkit 27.2, Linux",
+  "axe_core": "4.14.0",
+  "axe_tags": [
+    "wcag2a",
+    "wcag2aa",
+    "wcag21a",
+    "wcag21aa",
+    "wcag22aa"
+  ],
+  "axe": {
+    "start": {
+      "violations": [],
+      "passes": 24,
+      "incomplete": [
+        "color-contrast"
+      ]
+    },
+    "compared": {
+      "violations": [],
+      "passes": 28,
+      "incomplete": [
+        "color-contrast"
+      ]
+    },
+    "finding": {
+      "violations": [],
+      "passes": 30,
+      "incomplete": [
+        "color-contrast"
+      ]
+    },
+    "evidence open": {
+      "violations": [],
+      "passes": 33,
+      "incomplete": [
+        "color-contrast"
+      ]
+    },
+    "denied": {
+      "violations": [],
+      "passes": 25,
+      "incomplete": [
+        "color-contrast"
+      ]
+    }
+  },
+  "status_region": {
+    "role": "status",
+    "live": "polite",
+    "text": "Required report evidence is unavailable.Retry investigation"
+  },
+  "touch": {
+    "device": "iPhone 15",
+    "landing": {
+      "focus": "finding-title",
+      "top": 150,
+      "ledger_top": 280,
+      "viewport": [
+        393,
+        659
+      ],
+      "horizontal_scroll": false
+    },
+    "targets": 22,
+    "below_24px": [],
+    "below_44px_tall": []
+  },
+  "result": "pass"
+}

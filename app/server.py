@@ -124,12 +124,13 @@ def handler(store):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--port", type=int, default=8807)
+    parser.add_argument("--host", default="127.0.0.1", help="Bind address; use a private (e.g. Tailscale) address only for device checks")
     parser.add_argument("--db", type=Path, default=Path(__file__).resolve().parents[1] / ".local" / "demo.sqlite3")
     args = parser.parse_args()
     args.db.parent.mkdir(parents=True, exist_ok=True)
     store = Store(args.db)
-    server = ThreadingHTTPServer(("127.0.0.1", args.port), handler(store))
-    print(f"Synthetic Strategy POC: http://127.0.0.1:{args.port}", flush=True)
+    server = ThreadingHTTPServer((args.host, args.port), handler(store))
+    print(f"Synthetic Strategy POC: http://{args.host}:{args.port}", flush=True)
     try:
         server.serve_forever()
     except KeyboardInterrupt:

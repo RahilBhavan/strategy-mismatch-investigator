@@ -29,7 +29,7 @@
     "1440x1000"
   ],
   "feed_width_viewed": true,
-  "min_label_px": 14,
+  "min_label_px": 12,
   "point_px": 19,
   "contrast_min": 7.14,
   "measured_by": "Firefox computed styles and WCAG luminance calculation; quantitative labels only",

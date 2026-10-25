@@ -1,15 +1,18 @@
 import json
 from pathlib import Path
 from playwright.sync_api import sync_playwright
+import sys
+sys.path.insert(0,str(Path(__file__).resolve().parent))
+from engine import isolated_server, launch
 root=Path('/home/rahil/projects/strategy-mismatch-investigator')
 def luminance(rgb):
  vals=[x/255 for x in rgb]
  vals=[x/12.92 if x<=.04045 else ((x+.055)/1.055)**2.4 for x in vals]
  return .2126*vals[0]+.7152*vals[1]+.0722*vals[2]
-with sync_playwright() as p:
- b=p.firefox.launch(executable_path='/home/rahil/.cache/ms-playwright/firefox-1555/firefox/firefox',headless=True)
+with isolated_server() as URL, sync_playwright() as p:
+ b=launch(p)
  page=b.new_page(viewport={'width':390,'height':1000})
- page.goto('http://127.0.0.1:8807',wait_until='networkidle');page.get_by_role('button',name='Compare totals').click();page.get_by_role('button',name='Test the status selection').click();page.get_by_role('heading',name='The status selection explains the gap.').wait_for()
+ page.goto(URL,wait_until='networkidle');page.get_by_role('button',name='Compare totals').click();page.get_by_role('button',name='Test the status selection').click();page.get_by_role('heading',name='The status selection explains the gap.').wait_for()
  data=page.evaluate('''()=>[...document.querySelectorAll('.report-table th,.report-table .unit,.report-table .subline,.report-table caption,.ledger th,.ledger .subline,.finding h3')].map(e=>{let p=e,bg;while(p){bg=getComputedStyle(p).backgroundColor;if(!bg.endsWith(', 0)')&&bg!=='transparent')break;p=p.parentElement}return {size:parseFloat(getComputedStyle(e).fontSize),fg:getComputedStyle(e).color,bg:bg||'rgb(255,255,255)'}})''')
  b.close()
 import re

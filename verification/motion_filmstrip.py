@@ -4,7 +4,7 @@ import sys
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from engine import CAPTURE_STYLE, ENGINE, isolated_server, launch, named
+from engine import ENGINE, isolated_server, launch, named
 
 OUT = Path(__file__).resolve().parent
 frames = []

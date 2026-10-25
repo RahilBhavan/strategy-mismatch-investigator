@@ -2,8 +2,8 @@
   "browser": "webkit 27.2, Linux",
   "post_result_focus": {
     "id": "finding-title",
-    "top": 95.8125,
-    "bottom": 141.40625,
+    "top": 149.8125,
+    "bottom": 195.40625,
     "banner": 57.1875,
     "height": 1000
   },
@@ -66,6 +66,18 @@
       "outline": "solid"
     },
     {
+      "tag": "BUTTON",
+      "id": "export-json",
+      "text": "Export evidence JSON",
+      "outline": "solid"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "export-report",
+      "text": "Save readable report",
+      "outline": "solid"
+    },
+    {
       "tag": "SUMMARY",
       "id": "",
       "text": "Inspect report context",
@@ -80,13 +92,13 @@
     {
       "tag": "SUMMARY",
       "id": "",
-      "text": "Inspect synthetic source records",
+      "text": "Inspect report context",
       "outline": "solid"
     },
     {
-      "tag": "SUMMARY",
-      "id": "",
-      "text": "Provenance, retries & cleanup",
+      "tag": "BUTTON",
+      "id": "export-report",
+      "text": "Save readable report",
       "outline": "solid"
     },
     {
