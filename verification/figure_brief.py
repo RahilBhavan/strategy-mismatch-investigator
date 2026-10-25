@@ -4,7 +4,7 @@ from playwright.sync_api import sync_playwright
 import sys
 sys.path.insert(0,str(Path(__file__).resolve().parent))
 from engine import isolated_server, launch
-root=Path('/home/rahil/projects/strategy-mismatch-investigator')
+root=Path(__file__).resolve().parents[1]
 def luminance(rgb):
  vals=[x/255 for x in rgb]
  vals=[x/12.92 if x<=.04045 else ((x+.055)/1.055)**2.4 for x in vals]
