@@ -4,7 +4,7 @@ import json
 from decimal import Decimal, InvalidOperation
 
 LABEL = "Proof of concept — simulated Strategy connection"
-VERSION = "0.3.0"
+VERSION = "0.4.0"
 MAX_BYTES = 20 * 1024 * 1024
 MAX_ROWS = 100_000
 MAX_MINOR = 2**63 - 1

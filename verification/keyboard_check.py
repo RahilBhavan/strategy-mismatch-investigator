@@ -3,16 +3,18 @@ import json
 import sys
 from pathlib import Path
 from playwright.sync_api import sync_playwright
+sys.path.insert(0,str(Path(__file__).resolve().parent))
+from engine import CAPTURE_STYLE, ENGINE, isolated_server, launch, named
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT))
 trace=[]
-with sync_playwright() as p:
- b=p.firefox.launch(executable_path='/home/rahil/.cache/ms-playwright/firefox-1555/firefox/firefox',headless=True)
+with isolated_server() as URL, sync_playwright() as p:
+ b=launch(p)
  page=b.new_page(viewport={'width':390,'height':1000},accept_downloads=True,reduced_motion='reduce')
  # Block external dependencies before the first navigation, not just on a saved-result reload.
  external=[]
- page.on('request',lambda r:external.append(r.url) if not r.url.startswith('http://127.0.0.1:8807') else None)
- page.route('**/*',lambda r:r.continue_() if r.request.url.startswith('http://127.0.0.1:8807') else r.abort())
+ page.on('request',lambda r:external.append(r.url) if not r.url.startswith(URL) else None)
+ page.route('**/*',lambda r:r.continue_() if r.request.url.startswith(URL) else r.abort())
  def focus():return page.evaluate('({tag:document.activeElement.tagName,id:document.activeElement.id,text:document.activeElement.textContent.trim().slice(0,80),outline:getComputedStyle(document.activeElement).outlineStyle})')
  def tab_to(test,reverse=False):
   for _ in range(65):
@@ -24,25 +26,31 @@ with sync_playwright() as p:
   raise AssertionError('Could not reach target by keyboard: '+str(trace[-10:]))
  def by_id(name):return lambda f:f['id']==name
  def summary(text):return lambda f:f['tag']=='SUMMARY' and text in f['text']
- page.goto('http://127.0.0.1:8807',wait_until='networkidle')
+ page.goto(URL,wait_until='networkidle')
  tab_to(by_id('compare'));page.keyboard.press('Enter')
  page.get_by_role('button',name='Test the status selection').wait_for()
+ assert focus()['id']=='worksheet-title',focus()
  tab_to(by_id('diagnose'));page.keyboard.press('Enter')
  page.get_by_role('heading',name='The status selection explains the gap.').wait_for()
+ # The answer must receive focus and sit inside the viewport, below the sticky banner.
+ landing=page.evaluate("(()=>{const e=document.activeElement,r=e.getBoundingClientRect(),banner=document.querySelector('.simulation').getBoundingClientRect().bottom;return {id:e.id,top:r.top,bottom:r.bottom,banner,height:innerHeight}})()")
+ assert landing['id']=='finding-title' and landing['top']>=landing['banner'] and landing['bottom']<=landing['height'],landing
+ # On a phone the reconciliation must start on screen, not below the fold.
+ assert page.evaluate("document.querySelector('.ledger').getBoundingClientRect().top<innerHeight"),'ledger below the fold'
  tab_to(summary('Inspect report context'));page.keyboard.press('Space')
  assert page.locator('.evidence>details').first.evaluate('(e)=>e.open')
  tab_to(summary('Inspect execution evidence'));page.keyboard.press('Enter')
  assert page.locator('.evidence>details').nth(1).evaluate('(e)=>e.open')
  tab_to(by_id('export-json'))
  with page.expect_download() as info:page.keyboard.press('Enter')
- path=ROOT/'verification'/'keyboard-export.json';info.value.save_as(path)
+ path=ROOT/'verification'/named('keyboard-export.json');info.value.save_as(path)
  packet=json.loads(path.read_text());assert packet['payload']['result']['residual']=='0.00'
  tab_to(by_id('export-report'))
  with page.expect_download() as info:page.keyboard.press('Enter')
- info.value.save_as(ROOT/'verification'/'keyboard-report.html')
+ info.value.save_as(ROOT/'verification'/named('keyboard-report.html'))
  assert not external,external
  # Expanded setup controls and transient cancellation remain keyboard-operable.
- page.goto('http://127.0.0.1:8807',wait_until='networkidle')
+ page.goto(URL,wait_until='networkidle')
  tab_to(summary('Source & test controls'));page.keyboard.press('Space')
  tab_to(by_id('amount'));page.keyboard.press('Control+A');page.keyboard.type('25.00')
  tab_to(by_id('save-amount'));page.keyboard.press('Enter')
@@ -60,10 +68,6 @@ with sync_playwright() as p:
  tab_to(by_id('retry'));page.keyboard.press('Enter')
  page.get_by_text('Required report evidence is unavailable.',exact=True).wait_for()
  assert page.locator('.report-table').count()==0
- # Restore the sample input, preserving prior investigations as stale rather than deleting them.
- from app.fixtures import example
- response=page.request.put('http://127.0.0.1:8807/api/cases/status',data=json.dumps(example()),headers={'Content-Type':'application/json'})
- assert response.ok
  b.close()
-(ROOT/'verification'/'keyboard-checks.json').write_text(json.dumps({'browser':'Firefox 1555, Linux','viewport':390,'result':'pass','pointer_actions':0,'external_requests':external,'paths':['compare → diagnostic → open context/execution → JSON and readable export','expanded amount edit → slow run → cancel','denied evidence → retry without partial result'],'focus_trace':trace},indent=2)+'\n')
+(ROOT/'verification'/named('keyboard-checks.json')).write_text(json.dumps({'browser':f'{ENGINE} {b.version}, Linux','post_result_focus':landing,'viewport':390,'result':'pass','pointer_actions':0,'external_requests':external,'paths':['compare → diagnostic → open context/execution → JSON and readable export','expanded amount edit → slow run → cancel','denied evidence → retry without partial result'],'focus_trace':trace},indent=2)+'\n')
 print('Keyboard-only complete workflow, setup edit, cancellation, denial/retry and fresh external-blocked execution: PASS')

@@ -1,7 +1,0 @@
-{
-  "engine": "chromium",
-  "host": "Linux",
-  "live_strategy": "not tested",
-  "result": "unverified",
-  "error": "Locator.click: Timeout 7000ms exceeded.\nCall log:\n  - waiting for get_by_role(\"button\", name=\"Compare totals\")\n    - locator resolved to <button id=\"compare\" class=\"primary\">\u2026</button>\n  - attempting click action\n    - waiting for element to be visible, enabled and stable\n"
-}

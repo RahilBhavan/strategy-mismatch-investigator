@@ -1,5 +1,5 @@
 {
-  "browser": "Firefox 1555, Linux headless",
+  "browser": "firefox 157.0, Linux headless",
   "checks": [
     {
       "check": "compute, experiment, JSON/HTML export, full HTTP-server restart, packet reopen",
