@@ -1,6 +1,6 @@
 # POC acceptance receipt
 
-Date: 2026-10-24. Artifact: this repository, software 0.3.0. Source spec: RahilBhavan/main#41, revision 3. This receipt covers the functional synthetic POC, not a live Strategy integration or customer outcome.
+Date: 2026-10-24. Artifact: this repository, software 0.3.0. Source spec: `docs/SPEC.md`, revision 3 (planning issue #41 is in a private repository). This receipt covers the functional synthetic POC, not a live Strategy integration or customer outcome.
 
 ## Evidence mapping
 

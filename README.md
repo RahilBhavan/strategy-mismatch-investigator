@@ -1,51 +1,82 @@
-# Strategy number mismatch investigator
+# Strategy mismatch investigator: explains a gap between two report totals on synthetic data
 
-A working proof of concept for explaining a prompt/filter difference between two report totals. **Synthetic records and a simulated Strategy adapter only. Live Strategy integration is not tested.** This is an independent demonstration by Rahil Bhavan. It is not affiliated with, endorsed by or an official product of Strategy (formerly MicroStrategy), and it is not an installed extension. The interface borrows Strategy's published typeface and orange accent for context only; no Strategy logo or data is used.
+[![CI](https://github.com/RahilBhavan/strategy-mismatch-investigator/actions/workflows/ci.yml/badge.svg)](https://github.com/RahilBhavan/strategy-mismatch-investigator/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-## Run
+![The investigator after a diagnosis: report A totals 220, report B totals 180, and rerunning B with A's status selection gives 220 with a remaining difference of 0](verification/r3-demonstrated-1440.png)
 
-Python 3.11+; the application has no third-party dependencies.
+This is a proof of concept. It compares two reports built on the same synthetic order records and tests whether one changed selection explains the difference between their totals. It shows the measured impact and the remaining difference, with the evidence behind them. **It uses synthetic records and a simulated Strategy adapter only. Live Strategy integration is not tested.** It is independent work by Rahil Bhavan, not affiliated with, endorsed by or an official product of Strategy (formerly MicroStrategy).
+
+## What it does
+
+- Compares two totals and states the difference. In the default example, A is 220 and B is 180 (illustrative units, not money).
+- Reruns B with a transient change to one selection. Changing B's status selection to match A gives B = 220, a measured impact of 40 and a remaining difference of 0. The original report definitions are not changed.
+- Abstains instead of inventing a cause when the evidence does not support one: different snapshots, two selections that differ, missing unit context or no known amounts.
+- Exports the evidence as JSON or a readable HTML report. Reopening a JSON packet validates its source and recomputes the arithmetic. Altered packets are rejected.
+- A numerical explanation does not decide which business definition is correct. The interface says so.
+
+## How it works
+
+- `app/schema.py` validates input and builds exact decimal quantities and content fingerprints.
+- `app/adapter.py` computes the synthetic reports, with retry, cancellation and instance accounting.
+- `app/investigate.py` runs the deterministic comparison and the controlled experiment.
+- `app/store.py` persists cases and jobs in local SQLite and reopens validated evidence.
+- `app/server.py` is the local HTTP boundary and serves `web/`.
+
+There is no LLM, paid API or hosted font. Nothing leaves the machine.
+
+## Run it
+
+Prerequisite: Python 3.11 or later. The application has no third-party dependencies. CI uses Python 3.12. The tests were last run on Python 3.14.
 
 ```bash
 git clone https://github.com/RahilBhavan/strategy-mismatch-investigator
 cd strategy-mismatch-investigator
+python -m unittest discover -s tests -v
 python -m app.server --port 8807
 ```
 
-Open http://127.0.0.1:8807. The default local SQLite database is `.local/demo.sqlite3` and is ignored by Git. Override it with `--db /path/to/scratch.sqlite3` for an isolated instance. Do not use Orbit's port or database.
+Observed on 2026-10-24: 30 tests pass. Open http://127.0.0.1:8807 once the server runs.
 
 1. Choose the Status selection example and click **Compare totals**: A is 220, B is 180.
-2. Click **Test the status selection**: only the transient B status changes; B becomes 220, measured impact is 40 and remaining difference is 0.
-3. Inspect the context, computation and source records. The original definitions stay unchanged.
-4. Change the refunded amount under Source & test controls, then rerun. The evidence changes with the data.
-5. Try Different snapshots or Two selections differ: the feature abstains rather than inventing a cause.
-6. Export JSON/readable HTML. Reopen JSON to validate its source and recompute its arithmetic. Reloading a saved `?case=...&job=...` URL also reopens persisted evidence.
+2. Click **Test the status selection**: B becomes 220, the measured impact is 40 and the remaining difference is 0.
+3. Open the context, execution and source-record panels.
+4. Change the refunded amount under Source & test controls and rerun. The evidence changes with the data.
+5. Try Different snapshots or Two selections differ. The tool abstains.
+6. Export JSON or the readable report. Reloading a saved `?case=...&job=...` URL reopens the persisted evidence.
 
-Values are illustrative units, not money. A numerical explanation does not decide which business definition is correct. Default examples are editable; use a separate `--db` to restore pristine examples without deleting any existing evidence.
+The default database is `.local/demo.sqlite3`, ignored by Git. Use `--db /path/to/scratch.sqlite3` for an isolated instance. A separate `--db` restores the pristine examples without deleting existing evidence.
 
-## Verify
+The tests call the public computation and HTTP interfaces. They cover cancellation, stale input, exact decimal arithmetic, boundaries, restart and tampered packets. The browser checks in `verification/browser_check.py` need a local Playwright and Firefox install. They are not a runtime dependency.
 
-```bash
-python -m unittest discover -s tests -v
-```
+## Repository layout
 
-The app tests exercise its public computation/HTTP interfaces, cancellation, stale input, exact decimal arithmetic, boundaries, restart and tampered packets. Browser checks are in `verification/browser_check.py` and require a local Playwright/Firefox installation; this is a verification-only dependency, not a runtime dependency. They use an isolated server and disposable DB.
+- `app/`: the Python application.
+- `web/`: the comparison interface, evidence export, contract page and the bundled Inter font.
+- `tests/`: the unit and HTTP tests.
+- `docs/`: the spec, the adapter contract and the acceptance criteria.
+- `verification/`: the acceptance receipt, three review rounds, browser check scripts and their screenshots.
+- `explore/`: three saved design studies. They are not implemented features.
+- `DIRECTION.md`: the design direction.
 
-## Files and boundaries
+## Documentation
 
-- `app/schema.py`: input validation, exact quantities and content fingerprints.
-- `app/adapter.py`: synthetic report computation, retry, cancellation and instance accounting.
-- `app/investigate.py`: deterministic comparison and controlled-experiment reasoning.
-- `app/store.py`: local case/job persistence and validated evidence reopen.
-- `app/server.py`: local HTTP boundary and static asset serving.
-- `web/`: offline Inter font, comparison UI, readable evidence export and contract page.
-- `docs/ADAPTER.md`: documented inspiration versus locally designed contract fields.
-- `docs/ACCEPTANCE.md`, `verification/`: criteria and observed checks, with untested live behavior kept separate.
+- [`docs/SPEC.md`](docs/SPEC.md): scope, non-goals and the plan.
+- [`docs/ADAPTER.md`](docs/ADAPTER.md): which contract fields are inspired by Strategy's public REST documentation and which are designed locally.
+- [`docs/ACCEPTANCE.md`](docs/ACCEPTANCE.md): the acceptance criteria.
+- [`verification/ACCEPTANCE-RECEIPT.md`](verification/ACCEPTANCE-RECEIPT.md): the evidence for each criterion.
+- [`verification/REVIEW-R3.md`](verification/REVIEW-R3.md): the final independent critique.
 
-Verification and limits: [acceptance receipt](verification/ACCEPTANCE-RECEIPT.md), [final independent critique](verification/REVIEW-R3.md). Firefox/Linux and responsive emulations were exercised; Chromium, WebKit, real devices and screen readers remain unverified. Functional synthetic checks do not establish live integration or portfolio-level design approval.
+## Scope and limits
 
-The source spec and issue are [RahilBhavan/main#41](https://github.com/RahilBhavan/main/issues/41). No account signup, production access, direct warehouse queries, publishing, automatic report edits or scheduled jobs are included.
+- Synthetic records and a simulated adapter only. Live connectivity, privileges, real report definitions and native placement are not tested.
+- The interface borrows Strategy's published typeface and orange accent for context. No Strategy logo or data is used.
+- Firefox on Linux and responsive emulations were exercised. Chromium, WebKit, real devices and screen readers are unverified.
+- Not included: account signup, production access, direct warehouse queries, publishing, automatic report edits and scheduled jobs.
+- Strategy's Test Center already compares report outputs. This project tests one cause-specific experiment. It does not claim a missing market capability.
 
 ## License
 
-[MIT](LICENSE). The license covers this project's code. Inter is bundled under its own license (`web/assets/Inter-LICENSE.txt`).
+[MIT](LICENSE) for this project's code. Inter is bundled under its own license (`web/assets/Inter-LICENSE.txt`).
+
+Part of [Rahil Bhavan's projects](https://github.com/RahilBhavan).
