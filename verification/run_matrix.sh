@@ -5,7 +5,7 @@ set -euo pipefail
 root="$(cd "$(dirname "$0")/.." && pwd)"
 image=mcr.microsoft.com/playwright/python:v1.64.1-noble
 for engine in ${ENGINES:-chromium webkit}; do
-  for check in browser_check keyboard_check layout_checks contrast_audit; do
+  for check in ${CHECKS:-browser_check keyboard_check layout_checks contrast_audit assistive_check}; do
     echo "== $engine $check"
     podman run --rm --network host -e ENGINE="$engine" -e PYTHONDONTWRITEBYTECODE=1 \
       -v "$root":/w:Z -w /w "$image" \

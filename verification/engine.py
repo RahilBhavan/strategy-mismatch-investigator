@@ -5,6 +5,7 @@ official Ubuntu image (run_matrix.sh) renders Chromium, WebKit and Firefox norma
 """
 import contextlib
 import os
+import platform
 import sys
 import tempfile
 import threading
@@ -13,25 +14,36 @@ from pathlib import Path
 
 ENGINE = os.environ.get("ENGINE", "firefox")
 ROOT = Path(__file__).resolve().parents[1]
-HOST_FIREFOX = "/home/rahil/.cache/ms-playwright/firefox-1555/firefox/firefox"
+# A Playwright Firefox already downloaded on this host, if any; otherwise the bundled default.
+HOST_FIREFOX = next(iter(sorted(Path.home().glob(".cache/ms-playwright/firefox-*/firefox/firefox"), reverse=True)), None)
+HOST = f"macOS {platform.mac_ver()[0]}" if sys.platform == "darwin" else "Linux"
+# Safari on macOS tabs only to form fields unless the user enables "Press Tab to highlight each
+# item"; Option+Tab reaches every control, as a default-settings Safari user would press it.
+TAB = "Alt+Tab" if ENGINE == "webkit" and sys.platform == "darwin" else "Tab"
 
 
 def launch(playwright):
     browser_type = getattr(playwright, ENGINE)
-    if ENGINE == "firefox" and os.path.exists(HOST_FIREFOX):
+    if ENGINE == "firefox" and HOST_FIREFOX:
         return browser_type.launch(executable_path=HOST_FIREFOX, headless=True)
     return browser_type.launch(headless=True)
 
 
 def named(filename):
-    """Firefox keeps the historical receipt names; other engines get a suffix."""
-    if ENGINE == "firefox":
+    """Firefox keeps the historical receipt names; other engines (or RECEIPT_SUFFIX) get a suffix."""
+    suffix = os.environ.get("RECEIPT_SUFFIX", "" if ENGINE == "firefox" else ENGINE)
+    if not suffix:
         return filename
     stem, dot, ext = filename.rpartition(".")
-    return f"{stem}-{ENGINE}{dot}{ext}"
+    return f"{stem}-{suffix}{dot}{ext}"
 
-# Full-page captures otherwise paint the sticky banner wherever the scroll position left it.
-CAPTURE_STYLE = ".simulation{position:static!important}"
+def capture(page, path):
+    """Full-page capture from the top. Otherwise the sticky banner is painted wherever the scroll
+    position left it; an injected override style cannot help because the app's CSP blocks it."""
+    page.mouse.move(0, 0)  # no hover colour left on the last button pressed
+    page.evaluate("scrollTo(0, 0)")
+    page.wait_for_timeout(50)
+    page.screenshot(path=str(path), full_page=True)
 
 
 @contextlib.contextmanager

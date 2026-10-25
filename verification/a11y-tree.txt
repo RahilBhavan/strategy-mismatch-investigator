@@ -1,0 +1,183 @@
+- region "Report comparison":
+  - paragraph: 02 / Investigate
+  - heading "Report comparison" [level=2]
+  - text: Fixed synthetic snapshot
+  - status
+  - 'table "Illustrative values, computed from synthetic orders. Snapshot for both: synthetic-orders-v1."':
+    - caption: "Illustrative values, computed from synthetic orders. Snapshot for both: synthetic-orders-v1."
+    - rowgroup:
+      - row "Captured report Total":
+        - columnheader "Captured report"
+        - columnheader "Total"
+    - rowgroup:
+      - 'row "A Sales overview Status: All values Region: All values 220 illustrative units"':
+        - 'cell "A Sales overview Status: All values Region: All values"':
+          - strong: A Sales overview
+          - text: "Status: All values Region: All values"
+        - cell "220 illustrative units"
+      - 'row "B Finance review Status: paid Region: All values 180 illustrative units"':
+        - 'cell "B Finance review Status: paid Region: All values"':
+          - strong: B Finance review
+          - text: "Status: paid Region: All values"
+        - cell "180 illustrative units"
+  - paragraph: Difference (B − A) −18.18% relative to A
+  - strong: −40
+  - article:
+    - paragraph: Numerical cause demonstrated on synthetic data
+    - heading "The status selection explains the gap." [level=3]
+    - text: "A status: All values B status: paid"
+    - table "Reconciliation, step by step":
+      - caption: Reconciliation, step by step
+      - rowgroup:
+        - row "B Finance review as captured 180":
+          - rowheader "B Finance review as captured"
+          - cell "180"
+        - 'row "With A’s status selection: All values Adds order-2 (refunded, 40) +40"':
+          - 'rowheader "With A’s status selection: All values Adds order-2 (refunded, 40)"'
+          - cell "+40"
+        - row "B rerun with A’s status selection 220":
+          - rowheader "B rerun with A’s status selection"
+          - cell "220"
+        - row "A Sales overview as captured 220":
+          - rowheader "A Sales overview as captured"
+          - cell "220"
+        - row "Remaining difference (rerun B − A) 0":
+          - rowheader "Remaining difference (rerun B − A)"
+          - cell "0"
+    - paragraph: The original report definitions were not changed. Region and every other setting stayed as captured.
+    - list:
+      - listitem: This does not decide which status selection matches the intended business definition.
+  - region "What this result rests on":
+    - paragraph: 03 / Evidence
+    - heading "What this result rests on" [level=3]
+    - button "Export evidence JSON"
+    - button "Save readable report"
+    - group:
+      - text: Inspect report context
+      - table:
+        - rowgroup:
+          - row "Field A Sales overview B Finance review":
+            - columnheader "Field"
+            - columnheader "A Sales overview"
+            - columnheader "B Finance review"
+        - rowgroup:
+          - row "Report reference Differs sales-overview finance-review":
+            - rowheader "Report reference Differs"
+            - cell "sales-overview"
+            - cell "finance-review"
+          - row "Project synthetic-retail":
+            - rowheader "Project"
+            - cell "synthetic-retail"
+          - row "Metric order-amount":
+            - rowheader "Metric"
+            - cell "order-amount"
+          - row "Definition SUM(amount)":
+            - rowheader "Definition"
+            - cell "SUM(amount)"
+          - row "Unit / decimal scale illustrative units / 2":
+            - rowheader "Unit / decimal scale"
+            - cell "illustrative units / 2"
+          - row "Grain order":
+            - rowheader "Grain"
+            - cell "order"
+          - row "Snapshot synthetic-orders-v1":
+            - rowheader "Snapshot"
+            - cell "synthetic-orders-v1"
+          - row "Status selection Differs All values paid":
+            - rowheader "Status selection Differs"
+            - cell "All values"
+            - cell "paid"
+          - row "Region selection All values":
+            - rowheader "Region selection"
+            - cell "All values"
+    - group:
+      - text: Inspect execution evidence
+      - heading "Original A" [level=4]
+      - term: Instance
+      - definition:
+        - code: sim-b56389cd2e0d
+      - term: Selected / known rows
+      - definition: 4 / 4
+      - term: Computed total
+      - definition: "220.00"
+      - term: Complete result
+      - definition: "Yes"
+      - term: Definition fingerprint
+      - definition:
+        - code: 104c4ffa6c50bf9a4cb4c395778b09494590970f6ec0eefc3ea3845b3e34f790
+      - heading "Original B" [level=4]
+      - term: Instance
+      - definition:
+        - code: sim-8b5753c2c1b7
+      - term: Selected / known rows
+      - definition: 3 / 3
+      - term: Computed total
+      - definition: "180.00"
+      - term: Complete result
+      - definition: "Yes"
+      - term: Definition fingerprint
+      - definition:
+        - code: 741b4841d513f7ea2002b642ab4bdb5a5b43a38eafc49b52b0e513d5d0be4c1e
+      - heading "Diagnostic experiment" [level=4]
+      - term: Transient instance
+      - definition:
+        - code: sim-37d3138b4b0f
+      - term: Change
+      - definition: "Status: paid → All values"
+      - term: Selected / known rows
+      - definition: 4 / 4
+      - term: Total / residual
+      - definition: 220 / 0
+    - group:
+      - text: Inspect synthetic source records
+      - paragraph: All 4 synthetic records. Update the refunded amount in Source & test controls to rerun with different data.
+      - region "Synthetic source records":
+        - table:
+          - rowgroup:
+            - row "Order Status Region Amount":
+              - columnheader "Order"
+              - columnheader "Status"
+              - columnheader "Region"
+              - columnheader "Amount"
+          - rowgroup:
+            - row "order-1 paid East 100.00":
+              - cell "order-1"
+              - cell "paid"
+              - cell "East"
+              - cell "100.00"
+            - row "order-2 Added by the test refunded East 40.00":
+              - cell "order-2 Added by the test"
+              - cell "refunded"
+              - cell "East"
+              - cell "40.00"
+            - row "order-3 paid West 60.00":
+              - cell "order-3"
+              - cell "paid"
+              - cell "West"
+              - cell "60.00"
+            - row "order-4 paid West 20.00":
+              - cell "order-4"
+              - cell "paid"
+              - cell "West"
+              - cell "20.00"
+    - group:
+      - text: Provenance, retries & cleanup
+      - term: Connection
+      - definition:
+        - text: Simulated. This app never calls Strategy. A separate read-only check against Strategy’s public demo is described on the
+        - link "integration boundary":
+          - /url: /contract.html
+        - text: page.
+      - term: Case fingerprint
+      - definition:
+        - code: 9193a876ea584ff2d5cf918e2a6b7f9305ad972f4eee6cf1796d197e4b9d324b
+      - term: Software version
+      - definition: 0.4.0
+      - term: Injected condition
+      - definition: normal
+      - term: Transient instances
+      - definition: 3 released / 3 created
+      - term: Automatic retries
+      - definition: "0"
+      - paragraph: The adapter uses locally authored synthetic responses, not captured Strategy API responses.
+    - paragraph: Proof of concept — simulated Strategy connection. Exports contain synthetic source records. Live connectivity, privileges and native placement are not tested.

@@ -78,7 +78,7 @@
             "region": null,
             "status": null
           },
-          "instance_id": "sim-f1aee75018c1",
+          "instance_id": "sim-8d9980a57125",
           "report_id": "sales-overview"
         },
         {
@@ -89,7 +89,7 @@
               "paid"
             ]
           },
-          "instance_id": "sim-5dd7acf0e2d3",
+          "instance_id": "sim-6ef0aadef058",
           "report_id": "finance-review"
         },
         {
@@ -98,26 +98,26 @@
             "region": null,
             "status": null
           },
-          "instance_id": "sim-206f1e01a649",
+          "instance_id": "sim-ca1ff9f43f2a",
           "report_id": "finance-review"
         }
       ],
       "instances": [
         {
           "diagnostic": false,
-          "id": "sim-f1aee75018c1",
+          "id": "sim-8d9980a57125",
           "report_id": "sales-overview",
           "state": "released"
         },
         {
           "diagnostic": false,
-          "id": "sim-5dd7acf0e2d3",
+          "id": "sim-6ef0aadef058",
           "report_id": "finance-review",
           "state": "released"
         },
         {
           "diagnostic": true,
-          "id": "sim-206f1e01a649",
+          "id": "sim-ca1ff9f43f2a",
           "report_id": "finance-review",
           "state": "released"
         }
@@ -156,7 +156,7 @@
             "region": null,
             "status": null
           },
-          "instance_id": "sim-206f1e01a649",
+          "instance_id": "sim-ca1ff9f43f2a",
           "minor": "22000",
           "name": "Finance review",
           "non_null_rows": 4,
@@ -183,7 +183,7 @@
             "region": null,
             "status": null
           },
-          "instance_id": "sim-f1aee75018c1",
+          "instance_id": "sim-8d9980a57125",
           "minor": "22000",
           "name": "Sales overview",
           "non_null_rows": 4,
@@ -201,7 +201,7 @@
               "paid"
             ]
           },
-          "instance_id": "sim-5dd7acf0e2d3",
+          "instance_id": "sim-6ef0aadef058",
           "minor": "18000",
           "name": "Finance review",
           "non_null_rows": 3,
@@ -224,5 +224,5 @@
     "software_version": "0.4.0",
     "source_stale": false
   },
-  "sha256": "c91830a669c85ab1f5ab28cae2e41f2a84cc17fc05f6094ee1c31f423ba2e6a3"
+  "sha256": "932c44f825533ae86b44e61ac9415341a3cf96ff194f48186afd4065f2928436"
 }

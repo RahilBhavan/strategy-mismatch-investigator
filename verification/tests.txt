@@ -33,6 +33,6 @@ test_reproduces_b_by_rerunning_a_with_its_selections (test_live.LiveCheckTests.t
 test_session_failure_still_logs_out_and_reports_no_conclusion (test_live.LiveCheckTests.test_session_failure_still_logs_out_and_reports_no_conclusion) ... ok
 
 ----------------------------------------------------------------------
-Ran 33 tests in 3.838s
+Ran 33 tests in 3.991s
 
 OK

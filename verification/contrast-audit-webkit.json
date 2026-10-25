@@ -1,20 +1,20 @@
 {
-  "browser": "webkit 27.2",
+  "browser": "webkit 27.2, Linux",
   "states": {
     "empty @ 1280px": {
       "elements": 34,
       "minimum": 3.72
     },
     "candidate @ 1280px": {
-      "elements": 64,
+      "elements": 67,
       "minimum": 4.54
     },
     "demonstrated, all evidence and controls open @ 1280px": {
-      "elements": 185,
+      "elements": 188,
       "minimum": 4.54
     },
     "unresolved @ 1280px": {
-      "elements": 67,
+      "elements": 70,
       "minimum": 4.54
     },
     "error @ 1280px": {
@@ -30,15 +30,15 @@
       "minimum": 3.72
     },
     "candidate @ 390px": {
-      "elements": 58,
+      "elements": 61,
       "minimum": 5.06
     },
     "demonstrated, all evidence and controls open @ 390px": {
-      "elements": 179,
+      "elements": 182,
       "minimum": 5.95
     },
     "unresolved @ 390px": {
-      "elements": 61,
+      "elements": 64,
       "minimum": 5.06
     },
     "error @ 390px": {
