@@ -15,7 +15,8 @@ function present(focusResult=false){
  if(job.state==='complete'){
   if(job.stale){clearResult();message('Report context changed. Capture a new comparison.',true);address();return;}
   renderResult(job,source);renderEvidence(job,source);address();
-  if(focusResult)$('#worksheet-title').focus({preventScroll:true});
+  // After a test, the answer is the finding; after a comparison, it is the pair of totals.
+  if(focusResult){const target=job.phase==='diagnose'?$('#finding-title'):$('#worksheet-title');target.focus({preventScroll:true});const card=target.closest('.finding');if(card&&card.getBoundingClientRect().bottom>innerHeight)card.scrollIntoView({behavior:'instant',block:'start'});}
   $('#diagnose')?.addEventListener('click',()=>run('diagnose'));
   $('#export-json')?.addEventListener('click',async()=>{try{const packet=await api(`/api/jobs/${job.id}/export`);download('synthetic-investigation.json',JSON.stringify(packet,null,2));}catch(e){message(e.message,true);}});
   $('#export-report')?.addEventListener('click',async()=>{try{const packet=await api(`/api/jobs/${job.id}/export`);download('synthetic-investigation.html',readable(packet),'text/html');}catch(e){message(e.message,true);}});

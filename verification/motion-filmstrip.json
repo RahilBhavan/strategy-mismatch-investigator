@@ -1,0 +1,27 @@
+{
+  "engine": "firefox",
+  "duration_ms": 180,
+  "frames": [
+    {
+      "ms": 0,
+      "opacity": 0.5,
+      "frame": "r4-motion-0ms.png"
+    },
+    {
+      "ms": 60,
+      "opacity": 0.744175,
+      "frame": "r4-motion-60ms.png"
+    },
+    {
+      "ms": 120,
+      "opacity": 0.921918,
+      "frame": "r4-motion-120ms.png"
+    },
+    {
+      "ms": 180,
+      "opacity": 1.0,
+      "frame": "r4-motion-180ms.png"
+    }
+  ],
+  "focus_after_result": "finding-title"
+}

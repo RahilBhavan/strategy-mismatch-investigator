@@ -28,8 +28,11 @@ test_renamed_statuses (test_independent.IndependentTests.test_renamed_statuses) 
 test_reverse_selection (test_independent.IndependentTests.test_reverse_selection) ... ok
 test_two_specific_selections (test_independent.IndependentTests.test_two_specific_selections) ... ok
 test_zero_baseline (test_independent.IndependentTests.test_zero_baseline) ... ok
+test_refused_login_raises (test_live.LiveCheckTests.test_refused_login_raises) ... ok
+test_reproduces_b_by_rerunning_a_with_its_selections (test_live.LiveCheckTests.test_reproduces_b_by_rerunning_a_with_its_selections) ... ok
+test_session_failure_still_logs_out_and_reports_no_conclusion (test_live.LiveCheckTests.test_session_failure_still_logs_out_and_reports_no_conclusion) ... ok
 
 ----------------------------------------------------------------------
-Ran 30 tests in 3.851s
+Ran 33 tests in 3.991s
 
 OK

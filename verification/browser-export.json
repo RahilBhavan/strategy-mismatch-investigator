@@ -78,7 +78,7 @@
             "region": null,
             "status": null
           },
-          "instance_id": "sim-da8dbee01ad2",
+          "instance_id": "sim-58ca208f7e8a",
           "report_id": "sales-overview"
         },
         {
@@ -89,7 +89,7 @@
               "paid"
             ]
           },
-          "instance_id": "sim-5c377112e667",
+          "instance_id": "sim-0e7d6c8f9a8a",
           "report_id": "finance-review"
         },
         {
@@ -98,26 +98,26 @@
             "region": null,
             "status": null
           },
-          "instance_id": "sim-b613a29f46dd",
+          "instance_id": "sim-ba2409e77bbc",
           "report_id": "finance-review"
         }
       ],
       "instances": [
         {
           "diagnostic": false,
-          "id": "sim-da8dbee01ad2",
+          "id": "sim-58ca208f7e8a",
           "report_id": "sales-overview",
           "state": "released"
         },
         {
           "diagnostic": false,
-          "id": "sim-5c377112e667",
+          "id": "sim-0e7d6c8f9a8a",
           "report_id": "finance-review",
           "state": "released"
         },
         {
           "diagnostic": true,
-          "id": "sim-b613a29f46dd",
+          "id": "sim-ba2409e77bbc",
           "report_id": "finance-review",
           "state": "released"
         }
@@ -156,7 +156,7 @@
             "region": null,
             "status": null
           },
-          "instance_id": "sim-b613a29f46dd",
+          "instance_id": "sim-ba2409e77bbc",
           "minor": "22000",
           "name": "Finance review",
           "non_null_rows": 4,
@@ -183,7 +183,7 @@
             "region": null,
             "status": null
           },
-          "instance_id": "sim-da8dbee01ad2",
+          "instance_id": "sim-58ca208f7e8a",
           "minor": "22000",
           "name": "Sales overview",
           "non_null_rows": 4,
@@ -201,7 +201,7 @@
               "paid"
             ]
           },
-          "instance_id": "sim-5c377112e667",
+          "instance_id": "sim-0e7d6c8f9a8a",
           "minor": "18000",
           "name": "Finance review",
           "non_null_rows": 3,
@@ -214,15 +214,15 @@
       "percent_delta": "-18.18",
       "phase": "diagnose",
       "residual": "0.00",
-      "software_version": "0.3.0",
+      "software_version": "0.4.0",
       "status": "demonstrated",
       "summary": "Rerunning B with A’s status selection changes 180.00 to 220.00. The remaining difference from A is 0.00.",
       "unknowns": [
         "This does not decide which status selection matches the intended business definition."
       ]
     },
-    "software_version": "0.3.0",
+    "software_version": "0.4.0",
     "source_stale": false
   },
-  "sha256": "e7acd6ca35b1b2e0078ef5640f5d647e97c2a5b61a016247797824ca3943665c"
+  "sha256": "5a1ffdcc615e78f0962be931bdbb011e0b350d81fdb94bc4a5f716ac3d4bd88c"
 }

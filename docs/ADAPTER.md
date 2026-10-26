@@ -15,3 +15,11 @@ The evidence packet `synthetic-evidence-v1` contains the exact case, results, cl
 The browser talks only to its local HTTP server, using the project's own case/job/export endpoints. Same-origin write checks prevent cross-origin mutation. These local routes are not Strategy routes. There is no LLM, paid API, external script, analytics or hosted font dependency.
 
 Existing overlap: [Test Center](https://www2.strategy.com/producthelp/current/workstation/en-us/Content/test_center.htm) already compares report/baseline outputs. This POC tests a cause-specific prompt experiment and evidence review; it does not establish a missing market capability. Future work should reuse available comparison evidence.
+
+## Live read-only check (public demo)
+
+`app/live.py` is a separate stdlib client, not wired into the app. It signs in to Strategy's public demo Library (`demo.microstrategy.com`) with guest login (`loginMode` 8), creates report instances through `POST /api/v2/reports/{id}/instances`, applies transient `viewFilter` selections, sums the Revenue metric from returned grid payloads, reads filter definitions through `GET /api/model/reports/{id}` and logs out. The session needs both the `X-MSTR-AuthToken` header and its cookie. A view filter can only use attributes on the report's template; the server rejects others with `ERR001`.
+
+The October 24, 2026 run (`verification/live-demo-check.json`) compared *Region Category* (35,023,708.15) with *Electronics Revenue by Region* (21,666,380.90). Category = Electronics left 2,724,921.95; also excluding the Web region left 0.00. The guest user cannot read B's filter, so this is a numerical reproduction, not a reading of B's definition. Four transient instances, logout 204. The receipt lists every request; none writes to a saved object. Instances are not deleted individually; they end with the session. The read-access refusal arrives as HTTP 500 with a Model Server message, not 403.
+
+Metric values arrive as doubles. They are read through `repr` into `Decimal` and quantized to cents; the unrounded sum is kept beside the rounded total. `tests/test_live.py` exercises the client offline against a fake Library, including session expiry and refused login.

@@ -14,7 +14,7 @@ Exploration screenshots use the same verified font/accent rather than inventing 
 
 Inter 400/500/600, body 15px/1.6; heading 40px desktop/30px mobile; tabular numbers. Work surface white, ground #F4F4F1, ink #171717, secondary #555, rule #D8D8D2. Orange is a primary-control fill with dark text; never small orange text on white. Grid: 272px setup rail + flexible worksheet, max width 1380px, 32px desktop margins, 16px mobile. Controls 44px minimum; panel radius 12px, control 6px. No decorative shadows, photos, KPIs in a card row, gradients, skeleton branding or official logo.
 
-Signature: when the experiment finishes, the candidate block becomes a measured result with impact/residual in the same location. A 180ms opacity reveal; reduced motion shows the final state directly. Table values have direct labels, units and synthetic source context; no chart is needed for three numbers. Reader: analyst deciding whether the measured filter difference explains a gap. Data principle: totals alone do not establish business equivalence.
+Signature: when the experiment finishes, the candidate block becomes a reconciliation ledger in the same location: B as captured, the tested change with the records it adds, B rerun, A, and the remaining difference under a double rule. A 180ms opacity reveal; reduced motion shows the final state directly. Table values have direct labels, units and synthetic source context; no chart is needed for three numbers. Reader: analyst deciding whether the measured filter difference explains a gap. Data principle: totals alone do not establish business equivalence.
 
 ## Core copy and states
 
@@ -25,5 +25,9 @@ Mobile is the full workflow, with setup followed by the worksheet; report contex
 ## Review revisions
 
 Round 1 found omitted region differences in ambiguous findings, repeated conclusion copy and missing phone evidence. Round 2 confirms these changes and readable phone evidence. Subsequent corrections collapse recovery, right-align source amounts, make the ambiguous branch precise, and move focus to the result heading after the comparison. A dedicated keyboard-only check now exercises compare, diagnostic, disclosures, both exports, source edit, cancel and denial/retry with no pointer actions.
+
+Round 4 moved secondary controls after the worksheet, replaced the three-number result with the ledger, compared A/B context in one table, marked the record the test adds and removed the repeated summary sentence. Focus moves to the finding after a test. R4 scored 11/15; its seven defects were fixed afterwards.
+
+Rounds 5 and 6 ran beyond the skill's four-round budget, with Rahil's go-ahead. R5 rescored the R4 fixes at 12/15. Evidence then became one headed panel ("03 / Evidence") with the exports in its heading. Narrow phones stack each total under its report name, menus are drawn by the app so Safari honours their 44 px height, and the file buttons are styled. R6 scored 14/15, which meets the stop rule; Signature stays at 3. R6's five low defects and its trivial notes were fixed once afterwards and not rescored, as the skill's after-done rule says.
 
 Three shell studies are saved in explore/ and rendered at 390/1440. They were rendered after the first functional slice, not before implementation; the approved scope/brand fixed the primary worksheet direction. They are design studies, not implemented queue/canvas features. This is a recorded workflow deviation, not a claim that the exploration preceded code.
